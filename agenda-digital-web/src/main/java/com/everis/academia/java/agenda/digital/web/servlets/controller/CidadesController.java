@@ -19,22 +19,31 @@ public class CidadesController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if (req.getQueryString() != null) {
-			Integer codigo = Integer.valueOf(req.getParameter("codigo"));
-			String nome = req.getParameter("nome");
-			Cidade novaCidade = new Cidade(codigo, nome);
+
 			switch (req.getParameter("operation")) {
 			case "create":
-				CidadeDAO.create(novaCidade);
+				Integer codigoCreate = Integer.valueOf(req.getParameter("codigo"));
+				String nomeCreate = req.getParameter("nome");
+				Cidade novaCidadeCreate = new Cidade(codigoCreate, nomeCreate);
+				CidadeDAO.create(novaCidadeCreate);
 				break;
 			case "update":
+				Integer codigoUpdate = Integer.valueOf(req.getParameter("codigo"));
+				String nomeUpdate = req.getParameter("nome");
+				Cidade novaCidadeUpdate = new Cidade(codigoUpdate, nomeUpdate);
 				Integer oldCodigo = Integer.valueOf(req.getParameter("oldCodigo"));
 				String oldNome = req.getParameter("oldNome");
 				Cidade oldCidade = new Cidade(oldCodigo, oldNome);
-				CidadeDAO.update(oldCidade, novaCidade);
+				CidadeDAO.update(oldCidade, novaCidadeUpdate);
 				break;
 			case "delete":
+				Integer codigo = Integer.valueOf(req.getParameter("codigo"));
+				String nome = req.getParameter("nome");
+				Cidade novaCidade = new Cidade(codigo, nome);
 				CidadeDAO.delete(novaCidade);
 				break;
+			case "sort":
+				CidadeDAO.sort();
 			default:
 				break;
 			}

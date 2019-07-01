@@ -31,7 +31,7 @@ public class CidadesView extends HttpServlet {
 		printwriter.println("<html>");
 		printwriter.println("<body bgcolor=\"#FF0000\">");
 		printwriter.println("<table border=\"1\">");
-		printwriter.println("<tr><td colspan=\"2\">Parametros Recebidos</td></tr>");
+		printwriter.println("<tr><td>Parametros Recebidos</td><td><a href=\"./cc?operation=sort\">Sort</a></tr>");
 		for (Cidade cidade : CidadeDAO.read()) {
 			printwriter.println("<tr><td>Codigo: </td><td>" + cidade.getCodigo() + "</td></tr>");
 			printwriter.println("<tr><td>Nome: </td><td>" + cidade.getNome() + "</td></tr>");

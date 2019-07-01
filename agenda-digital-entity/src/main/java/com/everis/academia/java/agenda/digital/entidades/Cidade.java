@@ -1,6 +1,6 @@
 package com.everis.academia.java.agenda.digital.entidades;
 
-public class Cidade {
+public class Cidade implements Comparable<Cidade> {
 
 	private Integer codigo;
 	private String nome;
@@ -60,6 +60,16 @@ public class Cidade {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Cidade other) {
+		return this.codigo.compareTo(other.getCodigo());
+	}
+
+	@Override
+	public String toString() {
+		return "Cidade [codigo=" + codigo + ", nome=" + nome + "]";
 	}
 
 }
