@@ -20,6 +20,11 @@
     		<artifactId>javax.servlet-api</artifactId>
     		<scope>provided</scope>
 		</dependency>
+		<dependency>
+    		<groupId>com.everis.academia.java</groupId>
+    		<artifactId>agenda-digital-entity</artifactId>
+    		<version>0.0.1-SNAPSHOT</version>
+		</dependency>
   	
   	</dependencies>
   
