@@ -6,7 +6,7 @@ import java.util.List;
 public abstract class HtmlComponent {
 
 	private List<HtmlComponent> components;
-	private String tag;
+	private final String tag;
 	private String additionalProperties = "";
 
 	public HtmlComponent(String tag) {

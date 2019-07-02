@@ -31,7 +31,8 @@ public class UpdateCidade extends HttpServlet {
 					+ "\" readonly/></td></tr>");
 			printwriter.println(
 					"<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\" value=\"" + nome + "\"/></td></tr>");
-			printwriter.println("<input type=\"hidden\" name=\"oldNome\" value=\"" + nome + "\">");
+			// printwriter.println("<input type=\"hidden\" name=\"oldNome\" value=\"" + nome
+			// + "\">");
 		} else {
 			// ERROR, NAO PODE DAR UPDATE A NADA
 			printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"create\">");

@@ -54,7 +54,6 @@ public class CidadesController extends HttpServlet {
 				String nomeDelete = req.getParameter("nome");
 
 				// Valida
-				validaNome(nomeDelete);
 				validaCodigo(codigoDelete);
 
 				// Cria
