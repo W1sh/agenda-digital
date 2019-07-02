@@ -22,7 +22,6 @@ public abstract class HtmlComponent {
 		for (HtmlComponent component : components) {
 			html += component.getHtml();
 		}
-		System.out.println(html);
 		return html + "</" + tag + ">";
 	}
 

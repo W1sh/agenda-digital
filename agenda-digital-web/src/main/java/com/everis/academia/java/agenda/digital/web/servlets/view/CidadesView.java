@@ -37,6 +37,14 @@ public class CidadesView extends HttpServlet {
 			Html html = new Html();
 			Body body = new Body();
 
+			A aCreate = new A("Create");
+			aCreate.setAdditionalProperties(" href=\"./createCidade\"");
+			body.insertComponent(aCreate, true);
+
+			A aSort = new A("Sort");
+			aSort.setAdditionalProperties(" href=\"./cc?operation=sort\"");
+			body.insertComponent(aSort, true);
+
 			Table table = new Table();
 			for (Cidade cidade : CidadeDAO.read()) {
 
@@ -46,13 +54,13 @@ public class CidadesView extends HttpServlet {
 				String[] columns2 = { "Name: ", String.valueOf(cidade.getNome()) };
 				table.addRow(columns2);
 
-				A a1 = new A("Delete");
-				a1.setAdditionalProperties(" href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "&nome="
+				A aDelete = new A("Delete");
+				aDelete.setAdditionalProperties(" href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "&nome="
 						+ cidade.getNome() + "\"");
-				A a2 = new A("Update");
-				a2.setAdditionalProperties(
+				A aUpdate = new A("Update");
+				aUpdate.setAdditionalProperties(
 						" href=\"./updateCidade?codigo=" + cidade.getCodigo() + "&nome=" + cidade.getNome() + "\"");
-				HtmlComponent[] components = { a1, a2 };
+				HtmlComponent[] components = { aDelete, aUpdate };
 				table.addRow(components);
 				table.setAdditionalProperties(" border=\"1\"");
 			}

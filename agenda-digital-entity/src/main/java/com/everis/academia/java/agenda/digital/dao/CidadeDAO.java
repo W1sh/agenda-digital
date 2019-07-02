@@ -13,24 +13,38 @@ public class CidadeDAO {
 	private CidadeDAO() {
 	}
 
-	public static void create(Cidade cidade) {
-		cidades.add(cidade);
+	public static boolean create(Cidade cidade) {
+		return cidades.add(cidade);
 	}
 
 	public static List<Cidade> read() {
 		return cidades;
 	}
 
-	public static boolean update(Cidade oldCidade, Cidade newCidade) {
-		cidades.remove(oldCidade);
-		return cidades.add(newCidade);
+	public static boolean update(Cidade newCidade) {
+		for (Cidade cidade : CidadeDAO.read()) {
+			if (cidade.getCodigo().equals(newCidade.getCodigo())) {
+				cidade.setNome(newCidade.getNome());
+				return true;
+			}
+		}
+		return false;
 	}
 
-	public static void delete(Cidade cidade) {
-		cidades.remove(cidade);
+	public static boolean delete(Cidade cidade) {
+		return cidades.remove(cidade);
 	}
 
 	public static void sort() {
 		Collections.sort(cidades);
+	}
+
+	public static Cidade contains(String nomeCidade) {
+		for (Cidade cidade : CidadeDAO.read()) {
+			if (cidade.getNome().trim().equals(nomeCidade)) {
+				return cidade;
+			}
+		}
+		return null;
 	}
 }

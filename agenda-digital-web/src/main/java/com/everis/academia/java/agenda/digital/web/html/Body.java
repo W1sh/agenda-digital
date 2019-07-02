@@ -14,4 +14,8 @@ public class Body extends HtmlComponent {
 		return getComponents().add(component);
 	}
 
+	public boolean insertComponent(HtmlComponent component, boolean withBreak) throws Exception {
+		getComponents().add(component);
+		return getComponents().add(new Br());
+	}
 }

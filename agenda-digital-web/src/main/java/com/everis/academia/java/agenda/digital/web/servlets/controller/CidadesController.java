@@ -15,6 +15,7 @@ import com.everis.academia.java.agenda.digital.entidades.Cidade;
 public class CidadesController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	private int codigo = 1;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,25 +23,46 @@ public class CidadesController extends HttpServlet {
 
 			switch (req.getParameter("operation")) {
 			case "create":
-				Integer codigoCreate = Integer.valueOf(req.getParameter("codigo"));
+				// Recupera
 				String nomeCreate = req.getParameter("nome");
-				Cidade novaCidadeCreate = new Cidade(codigoCreate, nomeCreate);
+
+				// Valida
+				validaNome(nomeCreate);
+
+				// Cria
+				Cidade novaCidadeCreate = new Cidade(codigo++, nomeCreate);
 				CidadeDAO.create(novaCidadeCreate);
 				break;
 			case "update":
+				// Recupera
 				Integer codigoUpdate = Integer.valueOf(req.getParameter("codigo"));
 				String nomeUpdate = req.getParameter("nome");
+
+				// Valida
+				validaNome(nomeUpdate);
+
+				// Cria
 				Cidade novaCidadeUpdate = new Cidade(codigoUpdate, nomeUpdate);
-				Integer oldCodigo = Integer.valueOf(req.getParameter("oldCodigo"));
-				String oldNome = req.getParameter("oldNome");
-				Cidade oldCidade = new Cidade(oldCodigo, oldNome);
-				CidadeDAO.update(oldCidade, novaCidadeUpdate);
+				boolean updateSuccess = CidadeDAO.update(novaCidadeUpdate);
+				if (!updateSuccess) {
+					throw new ServletException("Não foi possivel dar update a cidade com codigo: " + codigoUpdate);
+				}
 				break;
 			case "delete":
-				Integer codigo = Integer.valueOf(req.getParameter("codigo"));
-				String nome = req.getParameter("nome");
-				Cidade novaCidade = new Cidade(codigo, nome);
-				CidadeDAO.delete(novaCidade);
+				// Recupera
+				Integer codigoDelete = Integer.valueOf(req.getParameter("codigo"));
+				String nomeDelete = req.getParameter("nome");
+
+				// Valida
+				validaNome(nomeDelete);
+				validaCodigo(codigoDelete);
+
+				// Cria
+				Cidade novaCidade = new Cidade(codigoDelete, nomeDelete);
+				boolean deleteSuccess = CidadeDAO.delete(novaCidade);
+				if (!deleteSuccess) {
+					throw new ServletException("Não foi possivel apagar a cidade com codigo: " + codigoDelete);
+				}
 				break;
 			case "sort":
 				CidadeDAO.sort();
@@ -49,5 +71,22 @@ public class CidadesController extends HttpServlet {
 			}
 			resp.sendRedirect("cidades");
 		}
+	}
+
+	private boolean validaCodigo(Integer codigo) throws ServletException {
+		if (codigo == null || codigo <= 0) {
+			throw new ServletException("Codigo não pode ser inferior a zero ou nulo!");
+		}
+		return true;
+	}
+
+	private boolean validaNome(String nome) throws ServletException {
+		if (nome == null || nome.trim().isEmpty()) {
+			throw new ServletException("Nome da cidade não pode ser vazio nem nulo!");
+		}
+		if (CidadeDAO.contains(nome) != null) {
+			throw new ServletException("Esta cidade já existe!");
+		}
+		return true;
 	}
 }

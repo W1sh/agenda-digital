@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "CreateCidade", urlPatterns = { "/createCidade", "/updateCidade" })
-public class CreateUpdateCidade extends HttpServlet {
+@WebServlet(name = "CreateCidade", urlPatterns = "/createCidade")
+public class CreateCidade extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -23,21 +23,8 @@ public class CreateUpdateCidade extends HttpServlet {
 		printwriter.println("<form action=\"cc\">");
 		printwriter.println("<table border=\"1\">");
 		printwriter.println("<tr><td colspan=\"2\">Formulário</td></tr>");
-		if (req.getQueryString() != null) {
-			Integer codigo = Integer.valueOf(req.getParameter("codigo"));
-			String nome = req.getParameter("nome");
-			printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"update\">");
-			printwriter.println("<tr><td>Codigo: </td><td><input type=\"text\" name=\"codigo\" value=\"" + codigo
-					+ "\"/></td></tr>");
-			printwriter.println(
-					"<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\" value=\"" + nome + "\"/></td></tr>");
-			printwriter.println("<input type=\"hidden\" name=\"oldCodigo\" value=\"" + codigo + "\">");
-			printwriter.println("<input type=\"hidden\" name=\"oldNome\" value=\"" + nome + "\">");
-		} else {
-			printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"create\">");
-			printwriter.println("<tr><td>Codigo: </td><td><input type=\"text\" name=\"codigo\"/></td></tr>");
-			printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\"/></td></tr>");
-		}
+		printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"create\">");
+		printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\"/></td></tr>");
 		printwriter.println("<tr><td colspan=\"2\" align=\"center\">");
 		printwriter.println("<input type=\"submit\" value=\"Enviar\">");
 		printwriter.println("<input type=\"reset\" value=\"Limpar\">");
