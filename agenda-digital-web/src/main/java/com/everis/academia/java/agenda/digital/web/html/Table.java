@@ -6,6 +6,11 @@ public class Table extends HtmlComponent {
 		super("table");
 	}
 
+	public Table(String additionalProperties) {
+		this();
+		setAdditionalProperties(additionalProperties);
+	}
+
 	public void addRow(String[] columns) throws Exception {
 		Tr tr = new Tr();
 		for (String column : columns) {

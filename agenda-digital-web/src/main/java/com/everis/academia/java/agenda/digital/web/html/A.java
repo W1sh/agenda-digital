@@ -8,6 +8,11 @@ public class A extends HtmlComponent {
 		insertComponent(text);
 	}
 
+	public A(String value, String additionalProperties) throws Exception {
+		this(value);
+		setAdditionalProperties(additionalProperties);
+	}
+
 	@Override
 	public boolean insertComponent(HtmlComponent component) throws Exception {
 		if (!(component instanceof Text)) {

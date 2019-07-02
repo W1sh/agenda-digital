@@ -29,42 +29,27 @@ public class CidadesView extends HttpServlet {
 		try {
 			Html html = new Html();
 			Body body = new Body();
-
-			A aCreate = new A("Create");
-			aCreate.setAdditionalProperties(" href=\"./createCidade\"");
+			A aCreate = new A("Create", " href=\"./createCidade\"");
 			body.insertComponent(aCreate, true);
-
-			A aSort = new A("Sort");
-			aSort.setAdditionalProperties(" href=\"./cc?operation=sort\"");
+			A aSort = new A("Sort", " href=\"./cc?operation=sort\"");
 			body.insertComponent(aSort, true);
-
-			A aSortByName = new A("Sort by name");
-			aSortByName.setAdditionalProperties(" href=\"./cc?operation=sortByName\"");
+			A aSortByName = new A("Sort by name", " href=\"./cc?operation=sortByName\"");
 			body.insertComponent(aSortByName, true);
-
-			Table table = new Table();
+			Table table = new Table(" border=\"1\"");
 			for (Cidade cidade : CidadeDAO.read()) {
-
 				String[] columns1 = { "Codigo: ", String.valueOf(cidade.getCodigo()) };
 				table.addRow(columns1);
-
 				String[] columns2 = { "Name: ", String.valueOf(cidade.getNome()) };
 				table.addRow(columns2);
-
-				A aDelete = new A("Delete");
-				aDelete.setAdditionalProperties(" href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "&nome="
+				A aDelete = new A("Delete", " href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "&nome="
 						+ cidade.getNome() + "\"");
-				A aUpdate = new A("Update");
-				aUpdate.setAdditionalProperties(
+				A aUpdate = new A("Update",
 						" href=\"./updateCidade?codigo=" + cidade.getCodigo() + "&nome=" + cidade.getNome() + "\"");
 				HtmlComponent[] components = { aDelete, aUpdate };
 				table.addRow(components);
-				table.setAdditionalProperties(" border=\"1\"");
 			}
 			html.insertComponent(body);
 			body.insertComponent(table);
-
-			System.out.println(html.getHtml());
 			printwriter.write(html.getHtml());
 		} catch (Exception e) {
 			e.printStackTrace();
