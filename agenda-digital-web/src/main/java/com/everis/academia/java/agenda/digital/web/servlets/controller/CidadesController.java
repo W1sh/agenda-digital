@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.everis.academia.java.agenda.digital.dao.CidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
+import com.everis.academia.java.agenda.digital.web.servlets.exceptions.ValidationServletException;
 
 @WebServlet(name = "CidadesController", urlPatterns = "/cc")
 public class CidadesController extends HttpServlet {
@@ -58,7 +59,8 @@ public class CidadesController extends HttpServlet {
 				// Cria
 				boolean deleteSuccess = CidadeDAO.delete(codigoDelete);
 				if (!deleteSuccess) {
-					throw new ServletException("Não foi possivel apagar a cidade com codigo: " + codigoDelete);
+					throw new ValidationServletException(
+							"Não foi possivel apagar a cidade com codigo: " + codigoDelete);
 				}
 				break;
 			case "sort":
@@ -76,17 +78,17 @@ public class CidadesController extends HttpServlet {
 
 	private boolean validaCodigo(Integer codigo) throws ServletException {
 		if (codigo == null || codigo <= 0) {
-			throw new ServletException("Codigo não pode ser inferior a zero ou nulo!");
+			throw new ValidationServletException("Codigo não pode ser inferior a zero ou nulo!");
 		}
 		return true;
 	}
 
 	private boolean validaNome(String nome) throws ServletException {
 		if (nome == null || nome.trim().isEmpty()) {
-			throw new ServletException("Nome da cidade não pode ser vazio nem nulo!");
+			throw new ValidationServletException("Nome da cidade não pode ser vazio nem nulo!");
 		}
 		if (CidadeDAO.contains(nome) != null) {
-			throw new ServletException("Esta cidade já existe!");
+			throw new ValidationServletException("Esta cidade já existe!");
 		}
 		return true;
 	}
