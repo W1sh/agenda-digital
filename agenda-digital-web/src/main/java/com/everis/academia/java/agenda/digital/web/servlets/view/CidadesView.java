@@ -26,13 +26,6 @@ public class CidadesView extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter printwriter = resp.getWriter();
 
-		if (req.getQueryString() != null) {
-			Integer codigo = Integer.valueOf(req.getParameter("codigo"));
-			String nome = req.getParameter("nome");
-			Cidade novaCidade = new Cidade(codigo, nome);
-			CidadeDAO.create(novaCidade);
-		}
-
 		try {
 			Html html = new Html();
 			Body body = new Body();
