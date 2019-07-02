@@ -21,18 +21,22 @@ public class CidadeDAO {
 		return cidades;
 	}
 
-	public static boolean update(Cidade newCidade) {
-		for (Cidade cidade : CidadeDAO.read()) {
-			if (cidade.getCodigo().equals(newCidade.getCodigo())) {
-				cidade.setNome(newCidade.getNome());
-				return true;
+	public static Cidade read(Integer codigo) {
+		// cidades.stream().filter(c -> c.getCodigo().equals(codigo)).findFirst().get();
+		for (Cidade cidade : cidades) {
+			if (cidade.getCodigo().equals(codigo)) {
+				return cidade;
 			}
 		}
-		return false;
+		return null;
 	}
 
-	public static boolean delete(Cidade cidade) {
-		return cidades.remove(cidade);
+	public static void update(Cidade newCidade) {
+		cidades.set(cidades.indexOf(newCidade), newCidade);
+	}
+
+	public static boolean delete(Integer codigo) {
+		return cidades.removeIf(c -> c.getCodigo().equals(codigo));
 	}
 
 	public static void sort(boolean reversed) {
@@ -52,6 +56,7 @@ public class CidadeDAO {
 	}
 
 	public static Cidade contains(String nomeCidade) {
+		// cidades.stream().anyMatch(c -> c.getNome().trim().equals(nomeCidade));
 		for (Cidade cidade : CidadeDAO.read()) {
 			if (cidade.getNome().trim().equals(nomeCidade)) {
 				return cidade;

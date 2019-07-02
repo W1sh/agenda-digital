@@ -41,10 +41,8 @@ public class CidadesView extends HttpServlet {
 				table.addRow(columns1);
 				String[] columns2 = { "Name: ", String.valueOf(cidade.getNome()) };
 				table.addRow(columns2);
-				A aDelete = new A("Delete", " href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "&nome="
-						+ cidade.getNome() + "\"");
-				A aUpdate = new A("Update",
-						" href=\"./updateCidade?codigo=" + cidade.getCodigo() + "&nome=" + cidade.getNome() + "\"");
+				A aDelete = new A("Delete", " href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "\"");
+				A aUpdate = new A("Update", " href=\"./updateCidade?codigo=" + cidade.getCodigo() + "\"");
 				HtmlComponent[] components = { aDelete, aUpdate };
 				table.addRow(components);
 			}

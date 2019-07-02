@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.everis.academia.java.agenda.digital.dao.CidadeDAO;
+import com.everis.academia.java.agenda.digital.entidades.Cidade;
+
 @WebServlet(name = "UpdateCidade", urlPatterns = "/updateCidade")
 public class UpdateCidade extends HttpServlet {
 
@@ -25,18 +28,14 @@ public class UpdateCidade extends HttpServlet {
 		printwriter.println("<tr><td colspan=\"2\">Formulário</td></tr>");
 		if (req.getQueryString() != null) {
 			Integer codigo = Integer.valueOf(req.getParameter("codigo"));
-			String nome = req.getParameter("nome");
+			Cidade cidade = CidadeDAO.read(codigo);
 			printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"update\">");
-			printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"codigo\" value=\"" + codigo
-					+ "\" readonly/></td></tr>");
-			printwriter.println(
-					"<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\" value=\"" + nome + "\"/></td></tr>");
-			// printwriter.println("<input type=\"hidden\" name=\"oldNome\" value=\"" + nome
-			// + "\">");
+			printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"codigo\" value=\""
+					+ cidade.getCodigo() + "\" readonly/></td></tr>");
+			printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\" value=\"" + cidade.getNome()
+					+ "\"/></td></tr>");
 		} else {
-			// ERROR, NAO PODE DAR UPDATE A NADA
-			printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"create\">");
-			printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\"/></td></tr>");
+			throw new ServletException("Update impossível sem código!");
 		}
 		printwriter.println("<tr><td colspan=\"2\" align=\"center\">");
 		printwriter.println("<input type=\"submit\" value=\"Enviar\">");

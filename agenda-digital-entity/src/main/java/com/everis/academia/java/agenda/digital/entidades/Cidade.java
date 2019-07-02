@@ -9,9 +9,13 @@ public class Cidade implements Comparable<Cidade> {
 		super();
 	}
 
-	public Cidade(Integer codigo, String nome) {
-		super();
+	public Cidade(Integer codigo) {
+		this();
 		this.codigo = codigo;
+	}
+
+	public Cidade(Integer codigo, String nome) {
+		this(codigo);
 		this.nome = nome;
 	}
 
@@ -36,7 +40,6 @@ public class Cidade implements Comparable<Cidade> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
 
@@ -53,11 +56,6 @@ public class Cidade implements Comparable<Cidade> {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
 	}

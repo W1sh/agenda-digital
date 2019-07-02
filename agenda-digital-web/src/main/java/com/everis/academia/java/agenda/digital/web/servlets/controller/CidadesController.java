@@ -21,6 +21,7 @@ public class CidadesController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		if (req.getQueryString() != null) {
 
 			switch (req.getParameter("operation")) {
@@ -45,22 +46,17 @@ public class CidadesController extends HttpServlet {
 
 				// Cria
 				Cidade novaCidadeUpdate = new Cidade(codigoUpdate, nomeUpdate);
-				boolean updateSuccess = CidadeDAO.update(novaCidadeUpdate);
-				if (!updateSuccess) {
-					throw new ServletException("Não foi possivel dar update a cidade com codigo: " + codigoUpdate);
-				}
+				CidadeDAO.update(novaCidadeUpdate);
 				break;
 			case "delete":
 				// Recupera
 				Integer codigoDelete = Integer.valueOf(req.getParameter("codigo"));
-				String nomeDelete = req.getParameter("nome");
 
 				// Valida
 				validaCodigo(codigoDelete);
 
 				// Cria
-				Cidade novaCidade = new Cidade(codigoDelete, nomeDelete);
-				boolean deleteSuccess = CidadeDAO.delete(novaCidade);
+				boolean deleteSuccess = CidadeDAO.delete(codigoDelete);
 				if (!deleteSuccess) {
 					throw new ServletException("Não foi possivel apagar a cidade com codigo: " + codigoDelete);
 				}
