@@ -14,10 +14,8 @@ import com.everis.academia.java.agenda.digital.entidades.Cidade;
 import com.everis.academia.java.agenda.digital.web.html.A;
 import com.everis.academia.java.agenda.digital.web.html.Body;
 import com.everis.academia.java.agenda.digital.web.html.Html;
+import com.everis.academia.java.agenda.digital.web.html.HtmlComponent;
 import com.everis.academia.java.agenda.digital.web.html.Table;
-import com.everis.academia.java.agenda.digital.web.html.Td;
-import com.everis.academia.java.agenda.digital.web.html.Text;
-import com.everis.academia.java.agenda.digital.web.html.Tr;
 
 @WebServlet(name = "Cidades", urlPatterns = "/cidades")
 public class CidadesView extends HttpServlet {
@@ -41,56 +39,22 @@ public class CidadesView extends HttpServlet {
 
 			Table table = new Table();
 			for (Cidade cidade : CidadeDAO.read()) {
-				Tr tr1 = new Tr();
-				Td td1 = new Td();
-				Text text1 = new Text("Codigo: ");
 
-				Td td2 = new Td();
-				Text text2 = new Text(String.valueOf(cidade.getCodigo()));
+				String[] columns1 = { "Codigo: ", String.valueOf(cidade.getCodigo()) };
+				table.addRow(columns1);
 
-				Tr tr2 = new Tr();
-				Td td3 = new Td();
-				Text text3 = new Text("Name: ");
+				String[] columns2 = { "Name: ", String.valueOf(cidade.getNome()) };
+				table.addRow(columns2);
 
-				Td td4 = new Td();
-				Text text4 = new Text(String.valueOf(cidade.getNome()));
-
-				Tr tr3 = new Tr();
-				Td td5 = new Td();
-				A a1 = new A();
-				Text text5 = new Text("Delete");
-
-				Tr tr4 = new Tr();
-				Td td6 = new Td();
-
-				A a2 = new A();
-				Text text6 = new Text("Update");
-
-				td1.insertComponent(text1);
-				td2.insertComponent(text2);
-				tr1.insertComponent(td1);
-				tr1.insertComponent(td2);
-				table.insertComponent(tr1);
-				table.setAdditionalProperties(" border=\"1\"");
-
-				td3.insertComponent(text3);
-				td4.insertComponent(text4);
-				tr2.insertComponent(td3);
-				tr2.insertComponent(td4);
-				table.insertComponent(tr2);
-
-				a1.insertComponent(text5);
+				A a1 = new A("Delete");
 				a1.setAdditionalProperties(" href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "&nome="
 						+ cidade.getNome() + "\"");
-				td5.insertComponent(a1);
-				tr3.insertComponent(td5);
-
-				a2.insertComponent(text6);
+				A a2 = new A("Update");
 				a2.setAdditionalProperties(
 						" href=\"./updateCidade?codigo=" + cidade.getCodigo() + "&nome=" + cidade.getNome() + "\"");
-				td6.insertComponent(a2);
-				tr3.insertComponent(td6);
-				table.insertComponent(tr3);
+				HtmlComponent[] components = { a1, a2 };
+				table.addRow(components);
+				table.setAdditionalProperties(" border=\"1\"");
 			}
 			html.insertComponent(body);
 			body.insertComponent(table);

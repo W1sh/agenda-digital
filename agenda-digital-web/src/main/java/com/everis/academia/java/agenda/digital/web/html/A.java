@@ -2,8 +2,10 @@ package com.everis.academia.java.agenda.digital.web.html;
 
 public class A extends HtmlComponent {
 
-	public A() {
+	public A(String value) throws Exception {
 		super("a");
+		Text text = new Text(value);
+		insertComponent(text);
 	}
 
 	@Override

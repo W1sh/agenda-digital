@@ -6,6 +6,27 @@ public class Table extends HtmlComponent {
 		super("table");
 	}
 
+	public void addRow(String[] columns) throws Exception {
+		Tr tr = new Tr();
+		for (String column : columns) {
+			Text text = new Text(column);
+			Td td = new Td();
+			td.insertComponent(text);
+			tr.insertComponent(td);
+		}
+		insertComponent(tr);
+	}
+
+	public void addRow(HtmlComponent[] components) throws Exception {
+		Tr tr = new Tr();
+		for (HtmlComponent component : components) {
+			Td td = new Td();
+			td.insertComponent(component);
+			tr.insertComponent(td);
+		}
+		insertComponent(tr);
+	}
+
 	@Override
 	public boolean insertComponent(HtmlComponent component) throws Exception {
 		if (!(component instanceof Tr)) {
