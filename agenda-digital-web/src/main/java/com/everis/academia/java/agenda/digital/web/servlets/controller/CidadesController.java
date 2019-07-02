@@ -16,6 +16,8 @@ public class CidadesController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private int codigo = 1;
+	private boolean sorted = false;
+	private boolean sortedByName = false;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -64,7 +66,11 @@ public class CidadesController extends HttpServlet {
 				}
 				break;
 			case "sort":
-				CidadeDAO.sort();
+				CidadeDAO.sort(sorted);
+				sorted = !sorted;
+			case "sortByName":
+				CidadeDAO.sortByName(sortedByName);
+				sortedByName = !sortedByName;
 			default:
 				break;
 			}

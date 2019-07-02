@@ -35,8 +35,20 @@ public class CidadeDAO {
 		return cidades.remove(cidade);
 	}
 
-	public static void sort() {
-		Collections.sort(cidades);
+	public static void sort(boolean reversed) {
+		if (!reversed) {
+			Collections.sort(cidades);
+		} else {
+			cidades.sort((o1, o2) -> o2.getCodigo().compareTo(o1.getCodigo()));
+		}
+	}
+
+	public static void sortByName(boolean reversed) {
+		if (!reversed) {
+			cidades.sort((o1, o2) -> o1.getNome().compareTo(o2.getNome()));
+		} else {
+			cidades.sort((o1, o2) -> o2.getNome().compareTo(o1.getNome()));
+		}
 	}
 
 	public static Cidade contains(String nomeCidade) {

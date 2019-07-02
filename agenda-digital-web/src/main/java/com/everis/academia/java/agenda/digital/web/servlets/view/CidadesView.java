@@ -38,6 +38,10 @@ public class CidadesView extends HttpServlet {
 			aSort.setAdditionalProperties(" href=\"./cc?operation=sort\"");
 			body.insertComponent(aSort, true);
 
+			A aSortByName = new A("Sort by name");
+			aSortByName.setAdditionalProperties(" href=\"./cc?operation=sortByName\"");
+			body.insertComponent(aSortByName, true);
+
 			Table table = new Table();
 			for (Cidade cidade : CidadeDAO.read()) {
 
