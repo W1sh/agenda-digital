@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.everis.academia.java</groupId>
+		<artifactId>agenda-digital-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>agenda-digital-dao</artifactId>
+	<name>agenda-digital-dao</name>
+	<description>Projeto responsavel por representar a camada de persistencia de dados</description>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.everis.academia.java</groupId>
+			<artifactId>agenda-digital-entity</artifactId>
+		</dependency>
+	</dependencies>
+</project>

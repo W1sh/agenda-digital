@@ -22,9 +22,7 @@ public class CidadesController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		if (req.getQueryString() != null) {
-
 			switch (req.getParameter("operation")) {
 			case "create":
 				// Recupera
