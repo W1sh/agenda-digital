@@ -22,7 +22,6 @@ public class CidadeDAO implements ICidadeDAO {
 
 	@Override
 	public List<Cidade> read() {
-		System.out.println(cidades);
 		return cidades;
 	}
 
@@ -63,7 +62,6 @@ public class CidadeDAO implements ICidadeDAO {
 		} else {
 			cidades.sort((o1, o2) -> o2.getCodigo().compareTo(o1.getCodigo()));
 		}
-		System.out.println(cidades);
 	}
 
 	public static void sortByName(boolean reversed) {

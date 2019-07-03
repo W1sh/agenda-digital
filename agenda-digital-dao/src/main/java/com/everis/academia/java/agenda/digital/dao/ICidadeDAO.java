@@ -1,6 +1,6 @@
 package com.everis.academia.java.agenda.digital.dao;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
@@ -8,7 +8,7 @@ public interface ICidadeDAO {
 
 	void create(Cidade cidade);
 
-	List<Cidade> read();
+	Collection<Cidade> read();
 
 	void update(Cidade cidade);
 

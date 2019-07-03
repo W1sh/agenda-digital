@@ -38,15 +38,14 @@ public class CidadesView extends HttpServlet {
 			A aSortByName = new A("Sort by name", " href=\"./cc?operation=sortByName\"");
 			body.insertComponent(aSortByName, true);
 			Table table = new Table(" border=\"1\"");
+			String[] columns1 = { "Codigo: ", "Name: " };
+			table.addRow(columns1);
 			for (Cidade cidade : cidadeBusiness.read()) {
-				String[] columns1 = { "Codigo: ", String.valueOf(cidade.getCodigo()) };
-				table.addRow(columns1);
-				String[] columns2 = { "Name: ", String.valueOf(cidade.getNome()) };
-				table.addRow(columns2);
 				A aDelete = new A("Delete", " href=\"./delete/cidade/ctrl?codigo=" + cidade.getCodigo() + "\"");
 				A aUpdate = new A("Update", " href=\"./update/cidade?codigo=" + cidade.getCodigo() + "\"");
+				String[] columns2 = { String.valueOf(cidade.getCodigo()), String.valueOf(cidade.getNome()) };
 				HtmlComponent[] components = { aDelete, aUpdate };
-				table.addRow(components);
+				table.addRow(columns2, components);
 			}
 			html.insertComponent(body);
 			body.insertComponent(table);

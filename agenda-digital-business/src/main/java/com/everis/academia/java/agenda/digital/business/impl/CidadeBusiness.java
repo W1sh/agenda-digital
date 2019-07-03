@@ -1,15 +1,17 @@
 package com.everis.academia.java.agenda.digital.business.impl;
 
-import java.util.List;
+import java.util.Collection;
 
 import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
+import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.dao.impl.CidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 public class CidadeBusiness implements ICidadeBusiness {
 
-	private CidadeDAO cidadeDAO = new CidadeDAO();
+	private ICidadeDAO cidadeDAO = new CidadeDAO();
+	// private ICidadeDAO cidadeDAO = new SetCidadeDAO();
 
 	@Override
 	public void create(Cidade cidade) throws BusinessException {
@@ -18,7 +20,7 @@ public class CidadeBusiness implements ICidadeBusiness {
 	}
 
 	@Override
-	public List<Cidade> read() {
+	public Collection<Cidade> read() {
 		return cidadeDAO.read();
 	}
 
