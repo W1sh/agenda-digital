@@ -1,23 +1,26 @@
-package com.everis.academia.java.agenda.digital.dao;
+package com.everis.academia.java.agenda.digital.dao.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
-public class CidadeDAO {
+public class CidadeDAO implements ICidadeDAO {
 
 	private static final List<Cidade> cidades = new ArrayList<Cidade>();
 
 	private CidadeDAO() {
 	}
 
-	public static boolean create(Cidade cidade) {
+	@Override
+	public Boolean create(Cidade cidade) {
 		return cidades.add(cidade);
 	}
 
-	public static List<Cidade> read() {
+	@Override
+	public List<Cidade> read() {
 		return cidades;
 	}
 
@@ -31,11 +34,13 @@ public class CidadeDAO {
 		return null;
 	}
 
-	public static void update(Cidade newCidade) {
-		cidades.set(cidades.indexOf(newCidade), newCidade);
+	@Override
+	public Boolean update(Cidade newCidade) {
+		return cidades.set(cidades.indexOf(newCidade), newCidade) != null;
 	}
 
-	public static boolean delete(Integer codigo) {
+	@Override
+	public Boolean delete(Integer codigo) {
 		return cidades.removeIf(c -> c.getCodigo().equals(codigo));
 	}
 
@@ -57,7 +62,7 @@ public class CidadeDAO {
 
 	public static Cidade contains(String nomeCidade) {
 		// cidades.stream().anyMatch(c -> c.getNome().trim().equals(nomeCidade));
-		for (Cidade cidade : CidadeDAO.read()) {
+		for (Cidade cidade : cidades) {
 			if (cidade.getNome().trim().equals(nomeCidade)) {
 				return cidade;
 			}
