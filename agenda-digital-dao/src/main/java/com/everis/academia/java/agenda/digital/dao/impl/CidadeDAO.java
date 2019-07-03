@@ -22,6 +22,7 @@ public class CidadeDAO implements ICidadeDAO {
 
 	@Override
 	public List<Cidade> read() {
+		System.out.println(cidades);
 		return cidades;
 	}
 
