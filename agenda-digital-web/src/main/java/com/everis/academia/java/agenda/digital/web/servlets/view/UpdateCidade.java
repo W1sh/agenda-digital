@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.everis.academia.java.agenda.digital.dao.CidadeDAO;
+import com.everis.academia.java.agenda.digital.dao.impl.CidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 @WebServlet(name = "UpdateCidade", urlPatterns = "/updateCidade")
