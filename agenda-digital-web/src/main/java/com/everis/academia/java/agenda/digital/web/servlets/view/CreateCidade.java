@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "CreateCidade", urlPatterns = "/createCidade")
+@WebServlet(name = "CreateCidade", urlPatterns = "/create/cidade")
 public class CreateCidade extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -20,10 +20,9 @@ public class CreateCidade extends HttpServlet {
 
 		printwriter.println("<html>");
 		printwriter.println("<body>");
-		printwriter.println("<form action=\"cc\">");
+		printwriter.println("<form action=\"cidade/ctrl\">");
 		printwriter.println("<table border=\"1\">");
 		printwriter.println("<tr><td colspan=\"2\">Formulário</td></tr>");
-		printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"create\">");
 		printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\"/></td></tr>");
 		printwriter.println("<tr><td colspan=\"2\" align=\"center\">");
 		printwriter.println("<input type=\"submit\" value=\"Enviar\">");

@@ -6,12 +6,13 @@ import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 public interface ICidadeDAO {
 
-	Boolean create(Cidade cidade);
+	void create(Cidade cidade);
 
 	List<Cidade> read();
 
-	Boolean update(Cidade cidade);
+	void update(Cidade cidade);
 
 	Boolean delete(Integer codigo);
 
+	Boolean contains(String nome);
 }

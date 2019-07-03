@@ -1,7 +1,6 @@
 package com.everis.academia.java.agenda.digital.dao.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
@@ -10,13 +9,15 @@ import com.everis.academia.java.agenda.digital.entidades.Cidade;
 public class CidadeDAO implements ICidadeDAO {
 
 	private static final List<Cidade> cidades = new ArrayList<Cidade>();
+	private static int codigo = 1;
 
-	private CidadeDAO() {
+	public CidadeDAO() {
 	}
 
 	@Override
-	public Boolean create(Cidade cidade) {
-		return cidades.add(cidade);
+	public void create(Cidade cidade) {
+		cidade.setCodigo(codigo++);
+		cidades.add(cidade);
 	}
 
 	@Override
@@ -35,8 +36,8 @@ public class CidadeDAO implements ICidadeDAO {
 	}
 
 	@Override
-	public Boolean update(Cidade newCidade) {
-		return cidades.set(cidades.indexOf(newCidade), newCidade) != null;
+	public void update(Cidade newCidade) {
+		cidades.set(cidades.indexOf(newCidade), newCidade);
 	}
 
 	@Override
@@ -44,12 +45,24 @@ public class CidadeDAO implements ICidadeDAO {
 		return cidades.removeIf(c -> c.getCodigo().equals(codigo));
 	}
 
+	@Override
+	public Boolean contains(String nomeCidade) {
+		// cidades.stream().anyMatch(c -> c.getNome().trim().equals(nomeCidade));
+		for (Cidade cidade : cidades) {
+			if (cidade.getNome().trim().equals(nomeCidade)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public static void sort(boolean reversed) {
 		if (!reversed) {
-			Collections.sort(cidades);
+			cidades.sort((o1, o2) -> o1.getCodigo().compareTo(o2.getCodigo()));
 		} else {
 			cidades.sort((o1, o2) -> o2.getCodigo().compareTo(o1.getCodigo()));
 		}
+		System.out.println(cidades);
 	}
 
 	public static void sortByName(boolean reversed) {
@@ -58,15 +71,5 @@ public class CidadeDAO implements ICidadeDAO {
 		} else {
 			cidades.sort((o1, o2) -> o2.getNome().compareTo(o1.getNome()));
 		}
-	}
-
-	public static Cidade contains(String nomeCidade) {
-		// cidades.stream().anyMatch(c -> c.getNome().trim().equals(nomeCidade));
-		for (Cidade cidade : cidades) {
-			if (cidade.getNome().trim().equals(nomeCidade)) {
-				return cidade;
-			}
-		}
-		return null;
 	}
 }

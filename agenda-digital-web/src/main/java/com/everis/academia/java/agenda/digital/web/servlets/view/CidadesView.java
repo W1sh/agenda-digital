@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.everis.academia.java.agenda.digital.dao.impl.CidadeDAO;
+import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
+import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 import com.everis.academia.java.agenda.digital.web.html.A;
 import com.everis.academia.java.agenda.digital.web.html.Body;
@@ -21,6 +22,7 @@ import com.everis.academia.java.agenda.digital.web.html.Table;
 public class CidadesView extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	ICidadeBusiness cidadeBusiness = new CidadeBusiness();
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,20 +31,21 @@ public class CidadesView extends HttpServlet {
 		try {
 			Html html = new Html();
 			Body body = new Body();
-			A aCreate = new A("Create", " href=\"./createCidade\"");
+			A aCreate = new A("Create", " href=\"./create/cidade\"");
 			body.insertComponent(aCreate, true);
 			A aSort = new A("Sort", " href=\"./cc?operation=sort\"");
 			body.insertComponent(aSort, true);
 			A aSortByName = new A("Sort by name", " href=\"./cc?operation=sortByName\"");
 			body.insertComponent(aSortByName, true);
 			Table table = new Table(" border=\"1\"");
-			for (Cidade cidade : CidadeDAO.read()) {
+			for (Cidade cidade : cidadeBusiness.read()) {
+				System.out.println(cidade);
 				String[] columns1 = { "Codigo: ", String.valueOf(cidade.getCodigo()) };
 				table.addRow(columns1);
 				String[] columns2 = { "Name: ", String.valueOf(cidade.getNome()) };
 				table.addRow(columns2);
-				A aDelete = new A("Delete", " href=\"./cc?operation=delete&codigo=" + cidade.getCodigo() + "\"");
-				A aUpdate = new A("Update", " href=\"./updateCidade?codigo=" + cidade.getCodigo() + "\"");
+				A aDelete = new A("Delete", " href=\"./delete/cidade/ctrl?codigo=" + cidade.getCodigo() + "\"");
+				A aUpdate = new A("Update", " href=\"./update/cidade?codigo=" + cidade.getCodigo() + "\"");
 				HtmlComponent[] components = { aDelete, aUpdate };
 				table.addRow(components);
 			}

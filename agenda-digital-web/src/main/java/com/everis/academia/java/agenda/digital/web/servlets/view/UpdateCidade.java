@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.everis.academia.java.agenda.digital.dao.impl.CidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
-@WebServlet(name = "UpdateCidade", urlPatterns = "/updateCidade")
+@WebServlet(name = "UpdateCidade", urlPatterns = "/update/cidade")
 public class UpdateCidade extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -23,13 +23,12 @@ public class UpdateCidade extends HttpServlet {
 
 		printwriter.println("<html>");
 		printwriter.println("<body>");
-		printwriter.println("<form action=\"cc\">");
+		printwriter.println("<form action=\"cidade/ctrl\">");
 		printwriter.println("<table border=\"1\">");
 		printwriter.println("<tr><td colspan=\"2\">Formulário</td></tr>");
 		if (req.getQueryString() != null) {
 			Integer codigo = Integer.valueOf(req.getParameter("codigo"));
 			Cidade cidade = CidadeDAO.read(codigo);
-			printwriter.println("<input type=\"hidden\" name=\"operation\" value=\"update\">");
 			printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"codigo\" value=\""
 					+ cidade.getCodigo() + "\" readonly/></td></tr>");
 			printwriter.println("<tr><td>Nome: </td><td><input type=\"text\" name=\"nome\" value=\"" + cidade.getNome()
