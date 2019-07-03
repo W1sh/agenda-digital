@@ -24,9 +24,11 @@ public class CidadesController extends HttpServlet {
 			case "sort":
 				CidadeDAO.sort(sorted);
 				sorted = !sorted;
+				break;
 			case "sortByName":
 				CidadeDAO.sortByName(sortedByName);
 				sortedByName = !sortedByName;
+				break;
 			default:
 				break;
 			}
