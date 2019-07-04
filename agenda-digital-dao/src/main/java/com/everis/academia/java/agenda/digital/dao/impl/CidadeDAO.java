@@ -11,9 +11,6 @@ public class CidadeDAO implements ICidadeDAO {
 	private static final List<Cidade> cidades = new ArrayList<Cidade>();
 	private static int codigo = 1;
 
-	public CidadeDAO() {
-	}
-
 	@Override
 	public void create(Cidade cidade) {
 		cidade.setCodigo(codigo++);
