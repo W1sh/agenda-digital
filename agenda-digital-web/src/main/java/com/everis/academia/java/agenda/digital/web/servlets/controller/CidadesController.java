@@ -32,7 +32,7 @@ public class CidadesController extends HttpServlet {
 			default:
 				break;
 			}
-			resp.sendRedirect("cidades");
+			resp.sendRedirect("jsp/cidade/cidades");
 		}
 	}
 }

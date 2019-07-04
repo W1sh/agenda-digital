@@ -23,7 +23,7 @@ public class CidadeDeleteController extends HttpServlet {
 		try {
 			Integer codigoDelete = Integer.valueOf(req.getParameter("codigo"));
 			cidadeBusiness.delete(codigoDelete);
-			resp.sendRedirect("/agenda-digital-web/cidades");
+			resp.sendRedirect("/agenda-digital-web/jsp/cidade/cidades.jsp");
 		} catch (BusinessException e) {
 			throw new ServletException(e);
 		}
