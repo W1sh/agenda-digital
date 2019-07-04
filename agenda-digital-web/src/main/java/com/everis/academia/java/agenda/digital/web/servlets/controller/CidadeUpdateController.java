@@ -26,10 +26,9 @@ public class CidadeUpdateController extends HttpServlet {
 			String nomeUpdate = req.getParameter("nome");
 			Cidade novaCidadeUpdate = new Cidade(codigoUpdate, nomeUpdate);
 			cidadeBusiness.update(novaCidadeUpdate);
+			resp.sendRedirect("/agenda-digital-web/cidades");
 		} catch (BusinessException e) {
 			throw new ServletException(e);
 		}
-		resp.sendRedirect("/agenda-digital-web/cidades");
 	}
-
 }

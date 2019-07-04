@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.everis.academia.java.agenda.digital.web.servlets.exceptions.ValidationServletException;
-
 @WebServlet(name = "Error", urlPatterns = "/error")
 public class Error extends HttpServlet {
 
@@ -21,7 +19,7 @@ public class Error extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter printwriter = resp.getWriter();
 
-		ValidationServletException e = (ValidationServletException) req.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
+		Exception e = (Exception) req.getAttribute(RequestDispatcher.ERROR_EXCEPTION);
 
 		printwriter.write(e.getMessage());
 	}

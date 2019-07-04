@@ -51,7 +51,7 @@ public class CidadesView extends HttpServlet {
 			body.insertComponent(table);
 			printwriter.write(html.getHtml());
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new ServletException(e);
 		}
 	}
 }

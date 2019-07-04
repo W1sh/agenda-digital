@@ -28,9 +28,9 @@ public class CidadeCreateController extends HttpServlet {
 			novaCidadeCreate.setNome(nomeCreate);
 
 			cidadeBusiness.create(novaCidadeCreate);
+			resp.sendRedirect("/agenda-digital-web/cidades");
 		} catch (BusinessException e) {
 			throw new ServletException(e);
 		}
-		resp.sendRedirect("/agenda-digital-web/cidades");
 	}
 }
