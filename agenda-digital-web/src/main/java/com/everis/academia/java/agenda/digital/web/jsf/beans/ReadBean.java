@@ -23,7 +23,6 @@ public class ReadBean {
 	}
 
 	public String call() {
-		System.out.println("call");
 		return null;
 	}
 

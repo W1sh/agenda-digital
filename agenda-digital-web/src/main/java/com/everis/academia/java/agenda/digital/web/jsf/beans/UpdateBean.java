@@ -35,4 +35,8 @@ public class UpdateBean {
 		cidade.setNome(nome);
 		return "update";
 	}
+
+	public void clean() {
+		cidade = new Cidade();
+	}
 }

@@ -12,7 +12,6 @@ public class DeleteBean {
 	private ICidadeBusiness business = new CidadeBusiness();
 
 	public void delete(Integer codigo) {
-		System.out.println(codigo);
 		try {
 			business.delete(codigo);
 		} catch (BusinessException e) {

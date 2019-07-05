@@ -15,7 +15,7 @@
 
 			<h:panelGroup align="center">
 				<h:commandButton type="submit" value="Enviar" action="#{updateBean.update()}" />
-				<h:commandButton type="reset" value="Limpar" />
+				<h:commandButton type="submit" value="Limpar" action="#{updateBean.clean()}"/>
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:form>

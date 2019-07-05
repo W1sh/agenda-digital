@@ -33,4 +33,8 @@ public class CreateBean {
 	public String call() {
 		return "create";
 	}
+
+	public void clean() {
+		cidade = new Cidade();
+	}
 }
