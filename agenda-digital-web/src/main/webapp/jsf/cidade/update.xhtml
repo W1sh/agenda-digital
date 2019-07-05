@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Update cidade</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2" border="1">
+			<h:outputLabel for="codigo" value="Codigo: " />
+			<h:inputText id="codigo" value="#{updateBean.cidade.codigo}" />
+
+			<h:outputLabel for="nome" value="Nome: " />
+			<h:inputText id="nome" value="#{updateBean.cidade.nome}" />
+
+			<h:panelGroup align="center">
+				<h:commandButton type="submit" value="Enviar" action="#{updateBean.update()}" />
+				<h:commandButton type="reset" value="Limpar" />
+			</h:panelGroup>
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
