@@ -22,13 +22,13 @@
 		<h:column>
 			<h:form align="center">
 				<f:facet name="header"></f:facet>
-				<h:commandButton value="Update"
-					action="#{updateBean.call(cidade.codigo, cidade.nome)}" />
+				<h:commandLink value="Update"
+					action="#{updateBean.call(cidade)}" />
 			</h:form>
 		</h:column>
 		<h:column>
 			<h:form align="center">
-				<h:commandButton value="Delete"
+				<h:commandLink value="Delete"
 					action="#{deleteBean.delete(cidade.codigo)}" />
 			</h:form>
 		</h:column>

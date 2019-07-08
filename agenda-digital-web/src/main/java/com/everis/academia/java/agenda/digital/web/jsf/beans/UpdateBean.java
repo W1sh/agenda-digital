@@ -1,6 +1,7 @@
 package com.everis.academia.java.agenda.digital.web.jsf.beans;
 
 import javax.faces.bean.ManagedBean;
+import javax.servlet.ServletException;
 
 import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
@@ -21,18 +22,17 @@ public class UpdateBean {
 		this.cidade = cidade;
 	}
 
-	public String update() {
+	public String update() throws ServletException {
 		try {
 			business.update(cidade);
 		} catch (BusinessException e) {
-			e.printStackTrace();
+			throw new ServletException(e);
 		}
 		return "cidades";
 	}
 
-	public String call(Integer codigo, String nome) {
-		cidade.setCodigo(codigo);
-		cidade.setNome(nome);
+	public String call(Cidade cidade) {
+		setCidade(cidade);
 		return "update";
 	}
 
