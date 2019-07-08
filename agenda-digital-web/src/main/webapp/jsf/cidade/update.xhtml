@@ -8,14 +8,14 @@
 	<h:form>
 		<h:panelGrid columns="2" border="1">
 			<h:outputLabel for="codigo" value="Codigo: " />
-			<h:inputText id="codigo" value="#{updateBean.cidade.codigo}"/>
+			<h:inputText id="codigo" value="#{cidadeUpdate.cidade.codigo}"/>
 
 			<h:outputLabel for="nome" value="Nome: " />
-			<h:inputText id="nome" value="#{updateBean.cidade.nome}" />
+			<h:inputText id="nome" value="#{cidadeUpdate.cidade.nome}" />
 
 			<h:panelGroup align="center">
-				<h:commandButton type="submit" value="Enviar" action="#{updateBean.update()}" />
-				<h:commandButton type="submit" value="Limpar" action="#{updateBean.clean()}"/>
+				<h:commandButton type="submit" value="Enviar" action="#{cidadeUpdate.update()}" />
+				<h:commandButton type="submit" value="Limpar" action="#{cidadeUpdate.clean()}"/>
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:form>

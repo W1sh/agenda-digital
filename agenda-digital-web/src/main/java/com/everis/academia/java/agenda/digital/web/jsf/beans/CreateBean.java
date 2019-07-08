@@ -8,7 +8,7 @@ import com.everis.academia.java.agenda.digital.business.exceptions.BusinessExcep
 import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
-@ManagedBean(name = "createBean")
+@ManagedBean(name = "cidadeCreate")
 public class CreateBean {
 
 	private ICidadeBusiness business = new CidadeBusiness();

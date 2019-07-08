@@ -6,10 +6,10 @@
 	<title>Cidades</title>
 </h:head>
 <h:form align="center">
-	<h:commandButton value="Create" action="#{createBean.call()}" />
+	<h:commandButton value="Create" action="#{cidadeCreate.call()}" />
 </h:form>
 <h:body>
-	<h:dataTable value="#{readBean.cidades}" var="cidade" cellspacing="1"
+	<h:dataTable value="#{cidadeRead.cidades}" var="cidade" cellspacing="1"
 		border="1">
 		<h:column>
 			<f:facet name="header">Codigo</f:facet>
@@ -23,13 +23,13 @@
 			<h:form align="center">
 				<f:facet name="header"></f:facet>
 				<h:commandLink value="Update"
-					action="#{updateBean.call(cidade)}" />
+					action="#{cidadeUpdate.call(cidade)}" />
 			</h:form>
 		</h:column>
 		<h:column>
 			<h:form align="center">
 				<h:commandLink value="Delete"
-					action="#{deleteBean.delete(cidade.codigo)}" />
+					action="#{cidadeDelete.delete(cidade.codigo)}" />
 			</h:form>
 		</h:column>
 	</h:dataTable>

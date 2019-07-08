@@ -8,11 +8,11 @@
 	<h:form>
 		<h:panelGrid columns="2" border="1">
 			<h:outputLabel for="nome" value="Nome: " />
-			<h:inputText id="nome" value="#{createBean.cidade.nome}" />
+			<h:inputText id="nome" value="#{cidadeCreate.cidade.nome}" />
 
 			<h:panelGroup align="center">
-				<h:commandButton value="Enviar" type="submit" action="#{createBean.create()}"/>
-				<h:commandButton type="reset" value="Limpar" action="#{createBean.clean()}"/>
+				<h:commandButton value="Enviar" type="submit" action="#{cidadeCreate.create()}"/>
+				<h:commandButton type="reset" value="Limpar" action="#{cidadeCreate.clean()}"/>
 			</h:panelGroup>
 		</h:panelGrid>
 	</h:form>
