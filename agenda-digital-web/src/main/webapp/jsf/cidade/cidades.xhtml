@@ -10,7 +10,7 @@
 </h:form>
 <h:body>
 	<h:dataTable value="#{cidadeRead.cidades}" var="cidade" cellspacing="1"
-		border="1">
+		border="1" id="dataTable">
 		<h:column>
 			<f:facet name="header">Codigo</f:facet>
 			<h:outputLabel align="center">#{cidade.codigo}</h:outputLabel>
@@ -33,5 +33,6 @@
 			</h:form>
 		</h:column>
 	</h:dataTable>
+	<h:messages for="dataTable" showSummary="true" showDetail="true"></h:messages>
 </h:body>
 </html>

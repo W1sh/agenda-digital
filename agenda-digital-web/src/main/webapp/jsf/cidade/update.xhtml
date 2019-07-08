@@ -5,7 +5,7 @@
 	<title>Update cidade</title>
 </h:head>
 <h:body>
-	<h:form>
+	<h:form prependId="updateForm">
 		<h:panelGrid columns="2" border="1">
 			<h:outputLabel for="codigo" value="Codigo: " />
 			<h:inputText id="codigo" value="#{cidadeUpdate.cidade.codigo}"/>
@@ -18,6 +18,7 @@
 				<h:commandButton type="submit" value="Limpar" action="#{cidadeUpdate.clean()}"/>
 			</h:panelGroup>
 		</h:panelGrid>
+		<h:messages for="nome" showSummary="true" showDetail="true"></h:messages>
 	</h:form>
 </h:body>
 </html>
