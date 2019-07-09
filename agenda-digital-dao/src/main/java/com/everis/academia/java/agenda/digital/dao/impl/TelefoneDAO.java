@@ -25,7 +25,7 @@ public class TelefoneDAO implements ITelefoneDAO {
 
 	@Override
 	public void update(Telefone entidade) {
-		for (Telefone telefone : telefones) {
+		for(Telefone telefone : telefones) {
 			/* TODO */
 		}
 	}
