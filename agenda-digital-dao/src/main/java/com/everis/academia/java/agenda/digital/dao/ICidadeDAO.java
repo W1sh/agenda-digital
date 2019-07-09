@@ -1,18 +1,10 @@
 package com.everis.academia.java.agenda.digital.dao;
 
-import java.util.Collection;
-
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
-public interface ICidadeDAO {
+public interface ICidadeDAO extends IGenericDAO<Cidade> {
 
-	void create(Cidade cidade);
-
-	Collection<Cidade> read();
-
-	void update(Cidade cidade);
-
-	Boolean delete(Integer codigo);
+	public Boolean delete(Integer codigo);
 
 	Boolean contains(String nome);
 }

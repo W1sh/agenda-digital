@@ -1,4 +1,4 @@
-package com.everis.academia.java.agenda.digital.web.jsf.beans;
+package com.everis.academia.java.agenda.digital.web.jsf.beans.cidade;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 @ManagedBean(name = "cidadeRead")
-public class ReadBean {
+public class CidadeReadBean {
 
 	private ICidadeBusiness business = new CidadeBusiness();
 	private Collection<Cidade> cidades;

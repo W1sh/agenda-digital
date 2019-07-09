@@ -1,4 +1,4 @@
-package com.everis.academia.java.agenda.digital.web.jsf.beans;
+package com.everis.academia.java.agenda.digital.web.jsf.beans.cidade;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,8 +9,8 @@ import com.everis.academia.java.agenda.digital.business.exceptions.BusinessExcep
 import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
-@ManagedBean(name = "cidadeUpdate")
-public class UpdateBean {
+@ManagedBean(name = "cidadeCreate")
+public class CidadeCreateBean {
 
 	private ICidadeBusiness business = new CidadeBusiness();
 	private Cidade cidade = new Cidade();
@@ -23,22 +23,21 @@ public class UpdateBean {
 		this.cidade = cidade;
 	}
 
-	public String update() {
+	public String create() {
 		try {
-			business.update(cidade);
+			business.create(cidade);
 			FacesContext.getCurrentInstance().addMessage("dataTable",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cidade atualizada com sucesso!", ""));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cidade criada com sucesso!", ""));
+			return "cidades";
 		} catch (BusinessException e) {
 			FacesContext.getCurrentInstance().addMessage("nome", new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Ocorreu um erro a atualizar a cidade!", e.getLocalizedMessage()));
+					"Ocorreu um erro a criar a cidade!", e.getLocalizedMessage()));
 			return null;
 		}
-		return "cidades";
 	}
 
-	public String call(Cidade cidade) {
-		setCidade(cidade);
-		return "update";
+	public String call() {
+		return "create";
 	}
 
 	public void clean() {

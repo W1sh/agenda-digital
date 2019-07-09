@@ -1,4 +1,4 @@
-package com.everis.academia.java.agenda.digital.web.jsf.beans;
+package com.everis.academia.java.agenda.digital.web.jsf.beans.cidade;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -9,7 +9,7 @@ import com.everis.academia.java.agenda.digital.business.exceptions.BusinessExcep
 import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 
 @ManagedBean(name = "cidadeDelete")
-public class DeleteBean {
+public class CidadeDeleteBean {
 
 	private ICidadeBusiness business = new CidadeBusiness();
 

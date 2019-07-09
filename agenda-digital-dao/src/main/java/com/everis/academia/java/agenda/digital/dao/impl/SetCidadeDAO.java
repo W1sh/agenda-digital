@@ -39,6 +39,11 @@ public class SetCidadeDAO implements ICidadeDAO {
 	}
 
 	@Override
+	public Boolean delete(Cidade entidade) {
+		return cidades.remove(entidade);
+	}
+
+	@Override
 	public Boolean contains(String nome) {
 		for (Cidade c : cidades) {
 			if (c.getNome().trim().equals(nome)) {
@@ -47,5 +52,4 @@ public class SetCidadeDAO implements ICidadeDAO {
 		}
 		return false;
 	}
-
 }

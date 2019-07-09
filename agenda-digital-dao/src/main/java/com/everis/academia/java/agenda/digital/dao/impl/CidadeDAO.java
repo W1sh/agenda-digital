@@ -43,6 +43,11 @@ public class CidadeDAO implements ICidadeDAO {
 	}
 
 	@Override
+	public Boolean delete(Cidade entidade) {
+		return cidades.remove(entidade);
+	}
+
+	@Override
 	public Boolean contains(String nomeCidade) {
 		// cidades.stream().anyMatch(c -> c.getNome().trim().equals(nomeCidade));
 		for (Cidade cidade : cidades) {
