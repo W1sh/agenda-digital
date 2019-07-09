@@ -1,24 +1,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Update tipo servico</title>
 </h:head>
 <h:body>
-	<h:form prependId="updateForm">
-		<h:panelGrid columns="2" border="1">
-			<h:outputLabel for="codigo" value="Codigo: " />
-			<h:inputText id="codigo" value="#{tipoServicoUpdate.servico.codigo}"/>
-
-			<h:outputLabel for="descricao" value="Descricao: " />
-			<h:inputText id="descricao" value="#{tipoServicoUpdate.servico.descricao}" />
-
-			<h:panelGroup align="center">
-				<h:commandButton type="submit" value="Enviar" action="#{tipoServicoUpdate.update()}" />
-				<h:commandButton type="submit" value="Limpar" action="#{tipoServicoUpdate.clean()}"/>
-			</h:panelGroup>
-		</h:panelGrid>
-		<h:messages for="descricao" showSummary="true" showDetail="true"></h:messages>
+	<h:form>
+		<p:panel id="panel" header="Update Cidade">
+			<h:panelGrid columns="3" cellpadding="5">
+				<p:outputLabel for="codigo" value="Codigo: " />
+				<p:inputText id="codigo" value="#{tipoServicoUpdate.servico.codigo}"
+					label="codigo">
+				</p:inputText>
+				<p:messages for="codigo" showSummary="true" showDetail="true"/>
+			</h:panelGrid>
+			<h:panelGrid columns="3" cellpadding="5">
+				<p:outputLabel for="descricao" value="Descricao: " />
+				<p:inputText id="descricao" value="#{tipoServicoUpdate.servico.descricao}"
+					label="descricao">
+				</p:inputText>
+				<p:messages for="descricao" showSummary="true" showDetail="true" />
+			</h:panelGrid>
+			<p:commandButton value="Save" update="panel"
+				action="#{tipoServicoUpdate.update()}" />
+		</p:panel>
 	</h:form>
 </h:body>
 </html>

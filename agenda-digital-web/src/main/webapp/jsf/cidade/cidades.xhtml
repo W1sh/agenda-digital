@@ -1,6 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
@@ -8,26 +7,25 @@
 </h:head>
 
 <h:body>
-	<p:messages for="dataTable" showSummary="true" showDetail="true"></p:messages>
+	<p:messages for="dataTable" id="msgs" showSummary="true"
+		showDetail="true"></p:messages>
 	<h:form>
-		<h:commandButton value="Create" action="#{cidadeCreate.call()}"
-			style="margin-bottom: 20px;margin-top: 20px;" />
-	</h:form>
-
-
+	<p:commandButton value="Create" action="#{cidadeCreate.call()}"
+		style="margin-bottom: 20px;margin-top: 20px;" />
+		</h:form>
 	<p:dataTable value="#{cidadeRead.cidades}" var="cidade" cellspacing="1"
 		border="1" id="dataTable" rows="10" paginator="true"
 		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 		rowsPerPageTemplate="5,10,15">
 		<p:columnGroup type="header">
 			<p:row>
-				<p:column rowspan="2" headerText="Codigo"/>
-				<p:column rowspan="2" headerText="Nome"/>
-				<p:column colspan="2" headerText="Ações"/>
+				<p:column rowspan="2" headerText="Codigo" />
+				<p:column rowspan="2" headerText="Nome" />
+				<p:column colspan="2" headerText="Ações" />
 			</p:row>
 			<p:row>
-				<p:column headerText="Update"/>
-				<p:column headerText="Delete"/>
+				<p:column headerText="Update" />
+				<p:column headerText="Delete" />
 			</p:row>
 		</p:columnGroup>
 		<p:column style="text-align: center;">
@@ -41,7 +39,8 @@
 		</p:column>
 		<p:column style="text-align: center;">
 			<p:commandLink value="Delete"
-				action="#{cidadeDelete.delete(cidade.codigo)}" />
+				action="#{cidadeDelete.delete(cidade.codigo)}"
+				update=":dataTable :msgs" />
 		</p:column>
 	</p:dataTable>
 </h:body>

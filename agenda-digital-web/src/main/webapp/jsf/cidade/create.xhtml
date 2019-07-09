@@ -1,21 +1,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Create cidade</title>
 </h:head>
 <h:body>
-	<h:form prependId="createForm">
-		<h:panelGrid columns="2" border="1">
-			<h:outputLabel for="nome" value="Nome: " />
-			<h:inputText id="nome" value="#{cidadeCreate.cidade.nome}" />
-
-			<h:panelGroup align="center">
-				<h:commandButton value="Enviar" type="submit" action="#{cidadeCreate.create()}"/>
-				<h:commandButton type="reset" value="Limpar" action="#{cidadeCreate.clean()}"/>
-			</h:panelGroup>
-		</h:panelGrid>
-		<h:messages for="nome" showSummary="true" showDetail="true"></h:messages>
+	<h:form>
+		<p:panel id="panel" header="Create Cidade">
+			<h:panelGrid columns="3" cellpadding="5">
+				<p:outputLabel for="nome" value="Nome: " />
+				<p:inputText id="nome" value="#{cidadeCreate.cidade.nome}"
+					label="nome">
+				</p:inputText>
+				<p:messages for="nome" showSummary="true" showDetail="true"/>
+			</h:panelGrid>
+			<p:commandButton value="Save" update="panel"
+				action="#{cidadeCreate.create()}"/>
+		</p:panel>
 	</h:form>
 </h:body>
 </html>
