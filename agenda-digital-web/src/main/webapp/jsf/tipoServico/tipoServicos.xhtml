@@ -6,12 +6,32 @@
 	<title>Tipos Servico</title>
 </h:head>
 <h:form align="center">
-	<h:commandButton value="Create" action="#{}" />
+	<h:commandButton value="Create" action="#{tipoServicoCreate.call()}" />
 </h:form>
 <h:body>
-	<h:dataTable value="#{}" var="cidade" cellspacing="1"
+	<h:dataTable value="#{tipoServicoRead.servicos}" var="servico" cellspacing="1"
 		border="1" id="dataTable">
-		
+		<h:column>
+			<f:facet name="header">Codigo</f:facet>
+			<h:outputLabel align="center">#{servico.codigo}</h:outputLabel>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Descricao</f:facet>
+			<h:outputLabel>#{servico.descricao}</h:outputLabel>
+		</h:column>
+		<h:column>
+			<h:form align="center">
+				<f:facet name="header"></f:facet>
+				<h:commandLink value="Update"
+					action="#{tipoServicoUpdate.call(servico)}" />
+			</h:form>
+		</h:column>
+		<h:column>
+			<h:form align="center">
+				<h:commandLink value="Delete"
+					action="#{tipoServicoDelete.delete(servico.codigo)}" />
+			</h:form>
+		</h:column>
 	</h:dataTable>
 	<h:messages for="dataTable" showSummary="true" showDetail="true"></h:messages>
 </h:body>

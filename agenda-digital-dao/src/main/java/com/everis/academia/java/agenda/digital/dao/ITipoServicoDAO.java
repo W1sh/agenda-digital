@@ -4,4 +4,6 @@ import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
 public interface ITipoServicoDAO extends IGenericDAO<TipoServico> {
 
+	Boolean delete(Short codigo);
+
 }
