@@ -1,0 +1,18 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Tipos Servico</title>
+</h:head>
+<h:form align="center">
+	<h:commandButton value="Create" action="#{}" />
+</h:form>
+<h:body>
+	<h:dataTable value="#{}" var="cidade" cellspacing="1"
+		border="1" id="dataTable">
+		
+	</h:dataTable>
+	<h:messages for="dataTable" showSummary="true" showDetail="true"></h:messages>
+</h:body>
+</html>

@@ -42,6 +42,28 @@
 
 	<build>
 		<finalName>agenda-digital-web</finalName>
-		
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxws-maven-plugin</artifactId>
+				<version>2.5</version>
+				<executions>
+					<execution>
+						<id>cidade-wsdl</id>
+						<configuration>
+							<wsdlUrls>
+								<wsdlUrl>http://localhost:8080/agenda-digital-web/soap/ClienteSOAP?wsdl</wsdlUrl>
+							</wsdlUrls>
+							<packageName>com.everis.academia.java.agenda.digital.web.soap.generated</packageName>
+							<keep>true</keep>
+							<sourceDestDir>${basedir}/src/main/java</sourceDestDir>
+						</configuration>
+						<goals>
+							<goal>wsimport</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 	</build>
 </project>

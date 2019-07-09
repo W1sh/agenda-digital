@@ -1,5 +1,7 @@
 package com.everis.academia.java.agenda.digital.web.soap;
 
+import java.util.Collection;
+
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebParam.Mode;
@@ -19,8 +21,27 @@ public class CidadeSOAP {
 	@WebMethod(operationName = "create")
 	@WebResult(name = "cidade")
 	public Cidade create(@WebParam(name = "cidade", mode = Mode.IN) Cidade cidade) throws BusinessException {
-
 		business.create(cidade);
 		return cidade;
+	}
+
+	@WebMethod(operationName = "read")
+	@WebResult(name = "cidade")
+	public Collection<Cidade> read() throws BusinessException {
+		return business.read();
+
+	}
+
+	@WebMethod(operationName = "update")
+	@WebResult(name = "cidade")
+	public Cidade update(@WebParam(name = "cidade", mode = Mode.IN) Cidade cidade) throws BusinessException {
+		business.update(cidade);
+		return cidade;
+	}
+
+	@WebMethod(operationName = "delete")
+	@WebResult(name = "isDeleted")
+	public boolean delete(@WebParam(name = "codigo", mode = Mode.IN) Integer codigo) throws BusinessException {
+		return business.delete(codigo);
 	}
 }
