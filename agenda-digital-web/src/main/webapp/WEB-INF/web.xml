@@ -8,7 +8,7 @@
 	<listener>
 		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
 	</listener>
-	
+
 	<servlet>
 		<servlet-name>FacesServlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -28,6 +28,12 @@
 		<servlet-name>JAXWSServlet</servlet-name>
 		<url-pattern>/soap</url-pattern>
 	</servlet-mapping>
+
+
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>delta</param-value>
+	</context-param>
 
 	<error-page>
 		<exception-type>javax.servlet.ServletException</exception-type>

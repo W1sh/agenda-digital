@@ -13,7 +13,7 @@
 
 	<artifactId>agenda-digital-web</artifactId>
 	<packaging>war</packaging>
-	<name>agenda-digital-web Maven Webapp</name>
+	<name>agenda-digital-web</name>
 
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -38,10 +38,18 @@
 			<groupId>com.sun.xml.ws</groupId>
 			<artifactId>jaxws-rt</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>delta</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<finalName>agenda-digital-web</finalName>
-		
+
 	</build>
 </project>

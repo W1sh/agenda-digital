@@ -23,6 +23,13 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>primefaces-repository</id>
+			<url>https://repository.primefaces.org/</url>
+		</repository>
+	</repositories>
+
 	<dependencyManagement>
 		<dependencies>
 			<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
@@ -61,6 +68,16 @@
 				<groupId>com.sun.xml.ws</groupId>
 				<artifactId>jaxws-rt</artifactId>
 				<version>2.3.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>7.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.primefaces.themes</groupId>
+				<artifactId>delta</artifactId>
+				<version>1.0.10</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

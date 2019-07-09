@@ -25,7 +25,7 @@ public class TelefoneDAO implements ITelefoneDAO {
 
 	@Override
 	public void update(Telefone entidade) {
-		for(Telefone telefone : telefones) {
+		for (Telefone telefone : telefones) {
 			/* TODO */
 		}
 	}
@@ -33,6 +33,11 @@ public class TelefoneDAO implements ITelefoneDAO {
 	@Override
 	public Boolean delete(Telefone entidade) {
 		return telefones.remove(entidade);
+	}
+
+	@Override
+	public Boolean delete(Short codigo) {
+		return null;
 	}
 
 }
