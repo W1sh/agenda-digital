@@ -1,15 +1,167 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<title>Create telefone</title>
 </h:head>
 <h:body>
-	<h:form prependId="createForm">
-		<h:panelGrid columns="2" border="1">
-		
-		</h:panelGrid>
-		<h:messages showSummary="true" showDetail="true"></h:messages>
+	<h:form id="prestadorForm">
+		<p:panel id="prestadorPanel" header="Create prestador serviços">
+			<p:panelGrid columns="3" cellpadding="5" styleClass="ui-noborder">
+				<p:outputLabel for="nome" value="Nome: " />
+				<p:inputText id="nome" value="#{prestadorCreate.prestador.nome}"
+					label="nome">
+				</p:inputText>
+				<p:messages for="nome" showSummary="true" showDetail="true" />
+
+				<p:outputLabel for="cidade" value="Cidade: " />
+				<p:selectOneMenu id="cidade"
+					value="#{prestadorCreate.prestador.cidade}" dynamic="true"
+					style="width:125px">
+					<f:selectItem itemLabel="Escolha uma" itemValue="" />
+					<f:selectItems value="#{cidadeRead.cidades}" />
+				</p:selectOneMenu>
+				<p:messages for="cidade" showSummary="true" showDetail="true" />
+
+				<p:outputLabel for="bairro" value="Bairro: " />
+				<p:inputText id="bairro" value="#{prestadorCreate.prestador.bairro}"
+					label="bairro">
+				</p:inputText>
+				<p:messages for="bairro" showSummary="true" showDetail="true" />
+
+				<p:outputLabel for="cep" value="CEP: " />
+				<p:inputText id="cep" value="#{prestadorCreate.prestador.cep}"
+					label="nome">
+				</p:inputText>
+				<p:messages for="cep" showSummary="true" showDetail="true" />
+
+				<p:outputLabel for="tipoLogradouro" value="Tipo Logradouro: " />
+				<p:selectOneMenu id="tipoLogradouro"
+					value="#{prestadorCreate.prestador.cidade}" dynamic="true"
+					style="width:125px">
+					<f:selectItem itemLabel="Escolha uma" itemValue="" />
+					<f:selectItems value="#{prestadorCreate.getLogradouros()}" />
+				</p:selectOneMenu>
+				<p:messages for="tipoLogradouro" showSummary="true"
+					showDetail="true" />
+
+				<p:outputLabel for="logradouro" value="Logradouro: " />
+				<p:inputText id="logradouro"
+					value="#{prestadorCreate.prestador.bairro}" label="bairro">
+				</p:inputText>
+				<p:messages for="logradouro" showSummary="true" showDetail="true" />
+
+				<p:outputLabel for="complemento" value="Complemento: " />
+				<p:inputText id="complemento"
+					value="#{prestadorCreate.prestador.bairro}" label="bairro">
+				</p:inputText>
+				<p:messages for="complemento" showSummary="true" showDetail="true" />
+
+				<p:outputLabel for="numero" value="Numero: " />
+				<p:inputText id="numero" value="#{prestadorCreate.prestador.bairro}"
+					label="bairro">
+				</p:inputText>
+				<p:messages for="numero" showSummary="true" showDetail="true" />
+
+				<p:outputLabel for="email" value="Email: " />
+				<p:inputText id="email" value="#{prestadorCreate.prestador.bairro}"
+					label="bairro">
+				</p:inputText>
+				<p:messages for="email" showSummary="true" showDetail="true" />
+			</p:panelGrid>
+			<br />
+			<p:panel id="telefonesPanel" header="Telefones">
+				<br />
+				<h:panelGrid columns="4" cellpadding="5">
+					<p:outputLabel for="createNumero" value="Numero: " />
+					<p:inputText id="createNumero"
+						value="#{telefoneCreate.telefone.numero}" label="createNumero" />
+					<p:commandButton value="Save" action="#{telefoneCreate.create()}" update=":prestadorForm:telefonesPanel" />
+					<p:messages for="createNumero" showSummary="true" showDetail="true" />
+				</h:panelGrid>
+				<br />
+				<p:messages for="telefonesDataTable" showSummary="true"
+					showDetail="true" />
+				<p:dataTable value="#{tipoServicoRead.servicos}" var="servico"
+					cellspacing="1" border="1" id="telefonesDataTable" rows="10"
+					scrollable="true">
+					<p:columnGroup type="header">
+						<p:row>
+							<p:column rowspan="2" headerText="Codigo" />
+							<p:column rowspan="2" headerText="Numero" />
+							<p:column colspan="2" headerText="Ações" />
+						</p:row>
+						<p:row>
+							<p:column headerText="Update" />
+							<p:column headerText="Delete" />
+						</p:row>
+					</p:columnGroup>
+					<p:column style="text-align: center;">
+						<p:outputLabel align="center">#{servico.codigo}</p:outputLabel>
+					</p:column>
+					<p:column style="text-align: center;">
+						<p:outputLabel>#{servico.descricao}</p:outputLabel>
+					</p:column>
+					<p:column style="text-align: center;">
+						<p:commandLink value="Update"
+							action="#{tipoServicoUpdate.call(servico)}" />
+					</p:column>
+					<p:column style="text-align: center;">
+						<p:commandLink value="Delete"
+							action="#{tipoServicoDelete.delete(servico.codigo)}"
+							update=":dataTable :msgs" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			<br />
+			<p:panel id="tiposServicoPanel" header="Servicos Credenciados">
+				<br />
+				<h:panelGrid columns="4" cellpadding="5">
+					<p:outputLabel for="createDescricao" value="Descricao: " />
+					<p:inputText id="createDescricao"
+						value="#{tipoServicoCreate.servico.descricao}" label="createDescricao" />
+					<p:commandButton value="Save" action="#{tipoServicoCreate.create()}" update=":prestadorForm:tiposServicoPanel"/>
+					<p:messages for="createDescricao" showSummary="true" showDetail="true" />
+				</h:panelGrid>
+				<br />
+				<p:messages for="tiposServicoDataTable" id="tiposServicoMsgs" showSummary="true"
+					showDetail="true" />
+				<p:dataTable value="#{tipoServicoRead.servicos}" var="servico"
+					cellspacing="1" border="1" id="tiposServicoDataTable" rows="10"
+					scrollable="true">
+					<p:columnGroup type="header">
+						<p:row>
+							<p:column rowspan="2" headerText="Codigo" />
+							<p:column rowspan="2" headerText="Nome" />
+							<p:column colspan="2" headerText="Ações" />
+						</p:row>
+						<p:row>
+							<p:column headerText="Update" />
+							<p:column headerText="Delete" />
+						</p:row>
+					</p:columnGroup>
+					<p:column style="text-align: center;">
+						<p:outputLabel align="center">#{servico.codigo}</p:outputLabel>
+					</p:column>
+					<p:column style="text-align: center;">
+						<p:outputLabel>#{servico.descricao}</p:outputLabel>
+					</p:column>
+					<p:column style="text-align: center;">
+						<p:commandLink value="Update"
+							action="#{tipoServicoUpdate.call(servico)}" />
+					</p:column>
+					<p:column style="text-align: center;">
+						<p:commandLink value="Delete"
+							action="#{tipoServicoDelete.delete(servico.codigo)}"
+							update=":dataTable :msgs" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+			<p:commandButton value="Save" update="prestadorPanel"
+				action="#{cidadeCreate.create()}" style="margin-top: 20px" />
+		</p:panel>
 	</h:form>
 </h:body>
 </html>

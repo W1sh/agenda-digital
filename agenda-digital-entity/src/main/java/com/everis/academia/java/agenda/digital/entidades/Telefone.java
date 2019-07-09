@@ -3,7 +3,7 @@ package com.everis.academia.java.agenda.digital.entidades;
 public class Telefone {
 
 	private Integer codigo;
-	private Integer numero;
+	private Long numero;
 	private PrestadorServico prestadorServico;
 
 	public Telefone() {
@@ -18,11 +18,11 @@ public class Telefone {
 		this.codigo = codigo;
 	}
 
-	public Integer getNumero() {
+	public Long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(Long numero) {
 		this.numero = numero;
 	}
 
