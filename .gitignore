@@ -110,4 +110,4 @@ buildNumber.properties
 # End of https://www.gitignore.io/api/java,maven,eclipse
 
 # Others
-/agenda-digital-web/src/main/java/com/everis/academia/java/agenda/digital/web/soap/generated/
+agenda-digital-ws-client/src/main/java/com/everis/academia/java/agenda/digital/web/soap/generated/

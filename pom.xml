@@ -15,6 +15,7 @@
 		<module>agenda-digital-web</module>
 		<module>agenda-digital-dao</module>
 		<module>agenda-digital-business</module>
+		<module>agenda-digital-ws-client</module>
 	</modules>
 
 	<properties>
