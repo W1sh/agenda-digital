@@ -41,14 +41,20 @@ public class PrestadorCreateBean {
 
 	public void createServico() {
 		try {
-			System.out.println("create servico");
 			business.create(servico);
+			prestador.getServicosCredenciados().add(servico);
+			updateDualList(new ArrayList<TipoServico>(business.read()),
+					new ArrayList<TipoServico>(prestador.getServicosCredenciados()));
 			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Tipo servico criado com sucesso!", ""));
 		} catch (BusinessException e) {
 			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs", new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Ocorreu um erro a criar o tipo servico!", e.getLocalizedMessage()));
 		}
+	}
+
+	public void updateDualList(List<TipoServico> source, List<TipoServico> target) {
+		servicosCredenciados = new DualListModel<TipoServico>(source, target);
 	}
 
 	public PrestadorServico getPrestador() {
