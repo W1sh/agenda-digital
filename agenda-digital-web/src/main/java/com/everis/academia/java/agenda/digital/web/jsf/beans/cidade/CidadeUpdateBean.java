@@ -4,15 +4,21 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+
 import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
-import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
+@Component(value = "cidadeUpdate")
 @ManagedBean(name = "cidadeUpdate")
+@RequestScope
 public class CidadeUpdateBean {
 
-	private ICidadeBusiness business = new CidadeBusiness();
+	@Autowired
+	private ICidadeBusiness business;
 	private Cidade cidade = new Cidade();
 
 	public Cidade getCidade() {

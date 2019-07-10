@@ -4,14 +4,20 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.RequestScope;
+
 import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
-import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 
+@Component(value = "cidadeDelete")
 @ManagedBean(name = "cidadeDelete")
+@RequestScope
 public class CidadeDeleteBean {
 
-	private ICidadeBusiness business = new CidadeBusiness();
+	@Autowired
+	private ICidadeBusiness business;
 
 	public void delete(Integer codigo) {
 		try {

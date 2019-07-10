@@ -5,12 +5,11 @@ import java.util.Collection;
 import com.everis.academia.java.agenda.digital.business.ITelefoneBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ITelefoneDAO;
-import com.everis.academia.java.agenda.digital.dao.impl.TelefoneDAO;
 import com.everis.academia.java.agenda.digital.entidades.Telefone;
 
 public class TelefoneBusiness implements ITelefoneBusiness {
 
-	private ITelefoneDAO dao = new TelefoneDAO();
+	private ITelefoneDAO dao;
 	private static final int NUMERO_LENGTH = 9;
 
 	@Override

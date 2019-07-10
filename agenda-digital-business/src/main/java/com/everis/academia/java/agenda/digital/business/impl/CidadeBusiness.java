@@ -2,15 +2,19 @@ package com.everis.academia.java.agenda.digital.business.impl;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
-import com.everis.academia.java.agenda.digital.dao.impl.CidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
+@Service
 public class CidadeBusiness implements ICidadeBusiness {
 
-	private ICidadeDAO cidadeDAO = new CidadeDAO();
+	@Autowired
+	private ICidadeDAO cidadeDAO;
 	// private ICidadeDAO cidadeDAO = new SetCidadeDAO();
 
 	@Override
@@ -51,5 +55,4 @@ public class CidadeBusiness implements ICidadeBusiness {
 			throw new BusinessException("Codigo não pode ser inferior a zero ou nulo!");
 		}
 	}
-
 }

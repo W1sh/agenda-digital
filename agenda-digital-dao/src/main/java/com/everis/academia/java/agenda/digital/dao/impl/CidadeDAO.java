@@ -3,9 +3,12 @@ package com.everis.academia.java.agenda.digital.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
+@Repository
 public class CidadeDAO implements ICidadeDAO {
 
 	private static final List<Cidade> cidades = new ArrayList<Cidade>();

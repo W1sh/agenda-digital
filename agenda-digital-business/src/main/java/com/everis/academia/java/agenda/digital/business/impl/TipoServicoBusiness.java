@@ -5,12 +5,11 @@ import java.util.Collection;
 import com.everis.academia.java.agenda.digital.business.ITipoServicoBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ITipoServicoDAO;
-import com.everis.academia.java.agenda.digital.dao.impl.TipoServicoDAO;
 import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
 public class TipoServicoBusiness implements ITipoServicoBusiness {
 
-	private ITipoServicoDAO dao = new TipoServicoDAO();
+	private ITipoServicoDAO dao;
 
 	@Override
 	public void create(TipoServico tipoServico) throws BusinessException {
