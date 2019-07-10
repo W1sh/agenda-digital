@@ -49,24 +49,24 @@
 
 				<p:outputLabel for="logradouro" value="Logradouro: " />
 				<p:inputText id="logradouro"
-					value="#{prestadorCreate.prestador.bairro}" label="bairro">
+					value="#{prestadorCreate.prestador.logradouro}" label="bairro">
 				</p:inputText>
 				<p:messages for="logradouro" showSummary="true" showDetail="true" />
 
 				<p:outputLabel for="complemento" value="Complemento: " />
 				<p:inputText id="complemento"
-					value="#{prestadorCreate.prestador.bairro}" label="bairro">
+					value="#{prestadorCreate.prestador.complemento}" label="bairro">
 				</p:inputText>
 				<p:messages for="complemento" showSummary="true" showDetail="true" />
 
 				<p:outputLabel for="numero" value="Numero: " />
-				<p:inputText id="numero" value="#{prestadorCreate.prestador.bairro}"
+				<p:inputText id="numero" value="#{prestadorCreate.prestador.numero}"
 					label="bairro">
 				</p:inputText>
 				<p:messages for="numero" showSummary="true" showDetail="true" />
 
 				<p:outputLabel for="email" value="Email: " />
-				<p:inputText id="email" value="#{prestadorCreate.prestador.bairro}"
+				<p:inputText id="email" value="#{prestadorCreate.prestador.email}"
 					label="bairro">
 				</p:inputText>
 				<p:messages for="email" showSummary="true" showDetail="true" />
@@ -78,15 +78,16 @@
 					<p:outputLabel for="createNumero" value="Numero: " />
 					<p:inputText id="createNumero"
 						value="#{telefoneCreate.telefone.numero}" label="createNumero" />
-					<p:commandButton value="Save" action="#{telefoneCreate.create()}" update=":prestadorForm:telefonesPanel" />
+					<p:commandButton value="Save" action="#{telefoneCreate.create()}"
+						update=":prestadorForm:telefonesPanel" />
 					<p:messages for="createNumero" showSummary="true" showDetail="true" />
 				</h:panelGrid>
 				<br />
-				<p:messages for="telefonesDataTable" showSummary="true"
-					showDetail="true" />
-				<p:dataTable value="#{tipoServicoRead.servicos}" var="servico"
-					cellspacing="1" border="1" id="telefonesDataTable" rows="10"
-					scrollable="true">
+				<p:messages for="telefonesDataTable" id="telefonesMsgs"
+					showSummary="true" showDetail="true" />
+				<p:dataTable value="#{telefoneRead.telefones}" var="telefone"
+					cellspacing="1" border="1" id="telefonesDataTable"
+					scrollable="true" scrollHeight="200">
 					<p:columnGroup type="header">
 						<p:row>
 							<p:column rowspan="2" headerText="Codigo" />
@@ -99,10 +100,10 @@
 						</p:row>
 					</p:columnGroup>
 					<p:column style="text-align: center;">
-						<p:outputLabel align="center">#{servico.codigo}</p:outputLabel>
+						<p:outputLabel align="center">#{telefone.codigo}</p:outputLabel>
 					</p:column>
 					<p:column style="text-align: center;">
-						<p:outputLabel>#{servico.descricao}</p:outputLabel>
+						<p:outputLabel>#{telefone.descricao}</p:outputLabel>
 					</p:column>
 					<p:column style="text-align: center;">
 						<p:commandLink value="Update"
@@ -111,7 +112,7 @@
 					<p:column style="text-align: center;">
 						<p:commandLink value="Delete"
 							action="#{tipoServicoDelete.delete(servico.codigo)}"
-							update=":dataTable :msgs" />
+							update=":prestadorForm:telefonesDataTable :prestadorForm:telefonesMsgs" />
 					</p:column>
 				</p:dataTable>
 			</p:panel>
@@ -121,43 +122,18 @@
 				<h:panelGrid columns="4" cellpadding="5">
 					<p:outputLabel for="createDescricao" value="Descricao: " />
 					<p:inputText id="createDescricao"
-						value="#{tipoServicoCreate.servico.descricao}" label="createDescricao" />
-					<p:commandButton value="Save" action="#{tipoServicoCreate.create()}" update=":prestadorForm:tiposServicoPanel"/>
-					<p:messages for="createDescricao" showSummary="true" showDetail="true" />
+						value="#{tipoServicoCreate.servico.descricao}"
+						label="createDescricao" />
+					<p:commandButton value="Save"
+						action="#{tipoServicoCreate.create()}"
+						update=":prestadorForm:tiposServicoPanel" />
+					<p:messages for="createDescricao" showSummary="true"
+						showDetail="true" />
 				</h:panelGrid>
 				<br />
-				<p:messages for="tiposServicoDataTable" id="tiposServicoMsgs" showSummary="true"
-					showDetail="true" />
-				<p:dataTable value="#{tipoServicoRead.servicos}" var="servico"
-					cellspacing="1" border="1" id="tiposServicoDataTable" rows="10"
-					scrollable="true">
-					<p:columnGroup type="header">
-						<p:row>
-							<p:column rowspan="2" headerText="Codigo" />
-							<p:column rowspan="2" headerText="Nome" />
-							<p:column colspan="2" headerText="Ações" />
-						</p:row>
-						<p:row>
-							<p:column headerText="Update" />
-							<p:column headerText="Delete" />
-						</p:row>
-					</p:columnGroup>
-					<p:column style="text-align: center;">
-						<p:outputLabel align="center">#{servico.codigo}</p:outputLabel>
-					</p:column>
-					<p:column style="text-align: center;">
-						<p:outputLabel>#{servico.descricao}</p:outputLabel>
-					</p:column>
-					<p:column style="text-align: center;">
-						<p:commandLink value="Update"
-							action="#{tipoServicoUpdate.call(servico)}" />
-					</p:column>
-					<p:column style="text-align: center;">
-						<p:commandLink value="Delete"
-							action="#{tipoServicoDelete.delete(servico.codigo)}"
-							update=":dataTable :msgs" />
-					</p:column>
-				</p:dataTable>
+				<p:messages for="tiposServicoPickList" id="tiposServicoMsgs"
+					showSummary="true" showDetail="true" />
+				<p:pickList id="tiposServicoPickList" value="#{tipoServicoRead.servicos}" var="servicos" itemLabel="#{servicos}" itemValue="#{servicos}" />
 			</p:panel>
 			<p:commandButton value="Save" update="prestadorPanel"
 				action="#{cidadeCreate.create()}" style="margin-top: 20px" />
