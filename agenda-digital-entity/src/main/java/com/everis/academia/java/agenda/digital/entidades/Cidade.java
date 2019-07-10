@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "TB_CIDADE", schema = "public")
-@SequenceGenerator(name = "SQ_CIDADE", sequenceName = "SQ_CIDADE", initialValue = 1, allocationSize = 1)
+@SequenceGenerator(name = "SQ_CIDADE", sequenceName = "SQ_CIDADE", initialValue = 1, allocationSize = 1, schema = "public")
 public class Cidade implements Comparable<Cidade>, Serializable {
 
 	private static final long serialVersionUID = 1L;
