@@ -2,13 +2,18 @@ package com.everis.academia.java.agenda.digital.business.impl;
 
 import java.util.Collection;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.everis.academia.java.agenda.digital.business.ITelefoneBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ITelefoneDAO;
 import com.everis.academia.java.agenda.digital.entidades.Telefone;
 
+@Service
 public class TelefoneBusiness implements ITelefoneBusiness {
 
+	@Autowired
 	private ITelefoneDAO dao;
 	private static final int NUMERO_LENGTH = 9;
 

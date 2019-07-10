@@ -122,18 +122,18 @@
 				<h:panelGrid columns="4" cellpadding="5">
 					<p:outputLabel for="createDescricao" value="Descricao: " />
 					<p:inputText id="createDescricao"
-						value="#{tipoServicoCreate.servico.descricao}"
+						value="#{prestadorCreate.servico.descricao}"
 						label="createDescricao" />
 					<p:commandButton value="Save"
-						action="#{tipoServicoCreate.create()}"
+						action="#{prestadorCreate.createServico()}"
 						update=":prestadorForm:tiposServicoPanel" />
-					<p:messages for="createDescricao" showSummary="true"
+					<p:messages for="createDescricao" id="tipoServicoMsgs" showSummary="true"
 						showDetail="true" />
 				</h:panelGrid>
 				<br />
 				<p:messages for="tiposServicoPickList" id="tiposServicoMsgs"
 					showSummary="true" showDetail="true" />
-				<p:pickList id="tiposServicoPickList" value="#{tipoServicoRead.servicos}" var="servicos" itemLabel="#{servicos}" itemValue="#{servicos}" />
+				<p:pickList id="tiposServicoPickList" value="#{prestadorCreate.servicosCredenciados}" var="servicosCredenciados" itemLabel="#{servicosCredenciados}" itemValue="#{servicosCredenciados}" />
 			</p:panel>
 			<p:commandButton value="Save" update="prestadorPanel"
 				action="#{cidadeCreate.create()}" style="margin-top: 20px" />

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.everis.academia.java.agenda.digital.dao.ITipoServicoDAO;
 import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
+@Repository
 public class TipoServicoDAO implements ITipoServicoDAO {
 
 	private static final List<TipoServico> tipoServicos = new ArrayList<TipoServico>();
