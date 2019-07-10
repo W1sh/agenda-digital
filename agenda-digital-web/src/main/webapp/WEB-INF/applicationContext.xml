@@ -20,7 +20,7 @@
 		<property name="url"
 			value="jdbc:postgresql://localhost:5432/academia" />
 		<property name="username" value="postgres" />
-		<property name="password" value="pgsql" />
+		<property name="password" value="senha" />
 	</bean>
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
