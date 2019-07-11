@@ -7,13 +7,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.event.CellEditEvent;
 import org.primefaces.model.DualListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.RequestScope;
 
 import com.everis.academia.java.agenda.digital.business.IPrestadorServicoBusiness;
 import com.everis.academia.java.agenda.digital.business.ITelefoneBusiness;
@@ -26,7 +25,7 @@ import com.everis.academia.java.agenda.digital.enums.TipoLogradouro;
 
 @Component(value = "prestadorCreate")
 @ManagedBean(name = "prestadorCreate")
-@RequestScope
+@ViewScoped
 public class PrestadorCreateBean {
 
 	@Autowired
@@ -56,6 +55,7 @@ public class PrestadorCreateBean {
 			prestador.getServicosCredenciados().addAll(servicosCredenciados.getTarget());
 			System.out.println(prestador);
 			businessPrestador.create(prestador);
+			prestador = new PrestadorServico();
 			FacesContext.getCurrentInstance().addMessage("prestadorPanel",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Prestador criado com sucesso!", ""));
 			return null;
@@ -71,6 +71,7 @@ public class PrestadorCreateBean {
 			businessTipoServico.create(servico);
 			prestador.getServicosCredenciados().add(servico);
 			updateDualList(new ArrayList<TipoServico>(businessTipoServico.read()), new ArrayList<TipoServico>());
+			servico = new TipoServico();
 			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Tipo servico criado com sucesso!", ""));
 		} catch (BusinessException e) {
@@ -81,9 +82,16 @@ public class PrestadorCreateBean {
 
 	public void createTelefone() {
 		try {
-			businessTelefone.create(telefone);
-			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone criado com sucesso!", ""));
+			if (telefone.getCodigo() == null) {
+				businessTelefone.create(telefone);
+				FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone criado com sucesso!", ""));
+			} else {
+				businessTelefone.update(telefone);
+				FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone atualizado com sucesso!", ""));
+			}
+			telefone = new Telefone();
 		} catch (BusinessException e) {
 			FacesContext.getCurrentInstance().addMessage("telefonesDataTable", new FacesMessage(
 					FacesMessage.SEVERITY_WARN, "Ocorreu um erro a criar o telefone!", e.getLocalizedMessage()));
@@ -91,14 +99,7 @@ public class PrestadorCreateBean {
 	}
 
 	public void updateTelefone(Telefone telefone) {
-		try {
-			businessTelefone.update(telefone);
-			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone atualizado com sucesso!", ""));
-		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("telefonesDataTable", new FacesMessage(
-					FacesMessage.SEVERITY_WARN, "Ocorreu um erro a atualizar o telefone!", e.getLocalizedMessage()));
-		}
+		this.telefone = telefone;
 	}
 
 	public void deleteTelefone(Integer codigo) {
@@ -110,19 +111,6 @@ public class PrestadorCreateBean {
 			FacesContext.getCurrentInstance().addMessage("telefonesDataTable", new FacesMessage(
 					FacesMessage.SEVERITY_WARN, "Ocorreu um erro a apagar o telefone!", e.getLocalizedMessage()));
 		}
-	}
-
-	public void onTelefonesDataTableCellEdit(CellEditEvent event) {
-		Object oldValue = event.getOldValue();
-		Object newValue = event.getNewValue();
-
-		if (newValue != null && !newValue.equals(oldValue)) {
-			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-					new FacesMessage(FacesMessage.SEVERITY_INFO,
-							"Telefone atualizado com sucesso! Valor antigo: " + oldValue + " | Novo valor: " + newValue,
-							""));
-		}
-
 	}
 
 	public void updateDualList(List<TipoServico> source, List<TipoServico> target) {

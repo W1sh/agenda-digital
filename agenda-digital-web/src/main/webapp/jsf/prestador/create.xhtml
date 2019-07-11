@@ -90,13 +90,14 @@
 					cellspacing="1" border="1" id="telefonesDataTable"
 					scrollable="true" scrollHeight="200" editable="true"
 					editMode="cell">
-					<p:ajax event="cellEdit"
-						listener="#{prestadorCreate.onTelefonesDataTableCellEdit}"
-						update=":prestadorForm:telefonesPanel" />
 					<p:columnGroup type="header">
 						<p:row>
-							<p:column headerText="Codigo" />
-							<p:column headerText="Numero" />
+							<p:column rowspan="2" headerText="Codigo" />
+							<p:column rowspan="2" headerText="Numero" />
+							<p:column colspan="2" headerText="Ações" />
+						</p:row>
+						<p:row>
+							<p:column headerText="Update" />
 							<p:column headerText="Delete" />
 						</p:row>
 					</p:columnGroup>
@@ -104,14 +105,12 @@
 						<p:outputLabel align="center" value="#{telefone.codigo}"></p:outputLabel>
 					</p:column>
 					<p:column style="text-align: center;">
-						<p:cellEditor>
-							<f:facet name="output">
-								<p:outputLabel value="#{telefone.numero}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText value="#{telefone.numero}" />
-							</f:facet>
-						</p:cellEditor>
+						<p:outputLabel value="#{telefone.numero}" />
+					</p:column>
+					<p:column style="text-align: center;">
+						<p:commandLink value="Update"
+							action="#{prestadorCreate.updateTelefone(telefone)}"
+							update=":prestadorForm:telefonesPanel :prestadorForm:telefonesMsgs" />
 					</p:column>
 					<p:column style="text-align: center;">
 						<p:commandLink value="Delete"
@@ -119,8 +118,10 @@
 							update=":prestadorForm:telefonesPanel :prestadorForm:telefonesMsgs" />
 					</p:column>
 				</p:dataTable>
-				<br/>
-				<p:outputLabel value="Pode editar o numero ao clickar no campo e premir ENTER quando acabar." style="font-size: 11px;" />
+				<br />
+				<p:outputLabel
+					value="Pode editar o numero ao clickar no campo e premir ENTER quando acabar."
+					style="font-size: 11px;" />
 			</p:panel>
 			<br />
 			<p:panel id="tiposServicoPanel" header="Servicos Credenciados">
@@ -141,8 +142,9 @@
 					showSummary="true" showDetail="true" />
 				<p:pickList id="tiposServicoPickList"
 					value="#{prestadorCreate.servicosCredenciados}"
-					var="servicosCredenciado" itemLabel="#{servicosCredenciado.descricao}"
-					itemValue="#{servicosCredenciado}" converter="tipoServicoConverter"/>
+					var="servicosCredenciado"
+					itemLabel="#{servicosCredenciado.descricao}"
+					itemValue="#{servicosCredenciado}" converter="tipoServicoConverter" />
 			</p:panel>
 			<p:commandButton value="Save" update="prestadorPanel"
 				action="#{prestadorCreate.create()}" style="margin-top: 20px" />
