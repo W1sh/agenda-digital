@@ -7,65 +7,79 @@
 	<title>Telefones</title>
 </h:head>
 <h:body>
-	<p:messages for="dataTable" id="msgs" showSummary="true"
-		showDetail="true"></p:messages>
-	<p:dataTable value="#{prestadorRead.getPrestadores()}" var="prestador" cellspacing="2" border="1"
-		id="dataTable" rows="10" paginator="true"
-		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-		rowsPerPageTemplate="5,10,15">
-		<p:columnGroup type="header">
-			<p:row>
-				<p:column headerText="Codigo" />
-				<p:column headerText="Nome" />
-				<p:column headerText="Cidade" />
-				<p:column headerText="Bairro" />
-				<p:column headerText="CEP" />
-				<p:column headerText="Tipo Logradouro" />
-				<p:column headerText="Logradouro" />
-				<p:column headerText="Complemento" />
-				<p:column headerText="Numero" />
-				<p:column headerText="Email" />
-				<p:column headerText="Telefones" />
-				<p:column headerText="Servicos Credenciados" />
-			</p:row>
-		</p:columnGroup>
-		<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.codigo}"/>
+<p:messages for="dataTable" id="msgs" showSummary="true"
+			showDetail="true"></p:messages>
+	<h:form id="form">
+		<p:dataTable value="#{prestadorRead.getPrestadores()}" var="prestador"
+			cellspacing="2" border="1" id="dataTable" rows="10" paginator="true"
+			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10,15">
+			<p:columnGroup type="header">
+				<p:row>
+					<p:column headerText="Codigo" />
+					<p:column headerText="Nome" />
+					<p:column headerText="Cidade" />
+					<p:column headerText="Bairro" />
+					<p:column headerText="CEP" />
+					<p:column headerText="Tipo Logradouro" />
+					<p:column headerText="Logradouro" />
+					<p:column headerText="Complemento" />
+					<p:column headerText="Numero" />
+					<p:column headerText="Email" />
+					<p:column headerText="Telefones" />
+					<p:column headerText="Servicos Credenciados" />
+					<p:column headerText="" />
+					<p:column headerText="" />
+				</p:row>
+			</p:columnGroup>
+			<p:column style="text-align: center;">
+				<p:outputLabel align="center" value="#{prestador.codigo}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.nome}"/>
+				<p:outputLabel align="center" value="#{prestador.nome}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.cidade.nome}"/>
+				<p:outputLabel align="center" value="#{prestador.cidade.nome}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.bairro}"/>
+				<p:outputLabel align="center" value="#{prestador.bairro}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.cep}"/>
+				<p:outputLabel align="center" value="#{prestador.cep}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.tipoLogradouro}"/>
+				<p:outputLabel align="center" value="#{prestador.tipoLogradouro}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.logradouro}"/>
+				<p:outputLabel align="center" value="#{prestador.logradouro}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.complemento}"/>
+				<p:outputLabel align="center" value="#{prestador.complemento}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.numero}"/>
+				<p:outputLabel align="center" value="#{prestador.numero}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestador.email}"/>
+				<p:outputLabel align="center" value="#{prestador.email}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestadorRead.telefonesAsString(prestador.telefones)}"/>
+				<p:outputLabel align="center"
+					value="#{prestadorRead.telefonesAsString(prestador.telefones)}" />
 			</p:column>
 			<p:column style="text-align: center;">
-				<p:outputLabel align="center" value="#{prestadorRead.servicosAsString(prestador.servicosCredenciados)}"/>
+				<p:outputLabel align="center"
+					value="#{prestadorRead.servicosAsString(prestador.servicosCredenciados)}" />
 			</p:column>
-	</p:dataTable>
-	<h:messages for="dataTable" showSummary="true" showDetail="true"></h:messages>
+			<p:column style="text-align: center;">
+				<p:commandLink value="Update"
+					action="#{prestadorUpdate.call(cidade)}" />
+			</p:column>
+			<p:column style="text-align: center;">
+				<p:commandLink value="Delete"
+					action="#{prestadorDelete.delete(prestador.codigo)}"
+					update=":form :msgs" />
+			</p:column>
+		</p:dataTable>
+	</h:form>
 </h:body>
 </html>
