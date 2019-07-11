@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
+import com.everis.academia.java.agenda.digital.business.IGenericBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 @Service
-public class CidadeBusiness implements ICidadeBusiness {
+public class CidadeBusiness implements IGenericBusiness<Cidade, Integer> {
 
 	@Autowired
 	private ICidadeDAO cidadeDAO;
@@ -41,9 +41,9 @@ public class CidadeBusiness implements ICidadeBusiness {
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public Boolean delete(Integer codigo) throws BusinessException {
+	public void delete(Integer codigo) throws BusinessException {
 		validaCodigo(codigo);
-		return cidadeDAO.delete(codigo);
+		cidadeDAO.delete(codigo);
 	}
 
 	private void validaNome(Cidade cidade) throws BusinessException {

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
+import com.everis.academia.java.agenda.digital.business.IGenericBusiness;
 import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 import com.everis.academia.java.agenda.digital.web.html.A;
@@ -22,7 +22,7 @@ import com.everis.academia.java.agenda.digital.web.html.Table;
 public class CidadesView extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	ICidadeBusiness cidadeBusiness = new CidadeBusiness();
+	IGenericBusiness<Cidade, Integer> cidadeBusiness = new CidadeBusiness();
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
+import com.everis.academia.java.agenda.digital.business.IGenericBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
+import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 @Component(value = "cidadeDelete")
 @ManagedBean(name = "cidadeDelete")
@@ -17,7 +18,7 @@ import com.everis.academia.java.agenda.digital.business.exceptions.BusinessExcep
 public class CidadeDeleteBean {
 
 	@Autowired
-	private ICidadeBusiness business;
+	private IGenericBusiness<Cidade, Integer> business;
 
 	public void delete(Integer codigo) {
 		try {
