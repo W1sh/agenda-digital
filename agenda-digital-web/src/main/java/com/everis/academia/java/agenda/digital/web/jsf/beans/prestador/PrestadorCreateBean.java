@@ -1,8 +1,8 @@
 package com.everis.academia.java.agenda.digital.web.jsf.beans.prestador;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -36,7 +36,7 @@ public class PrestadorCreateBean {
 	private ITelefoneBusiness businessTelefone;
 
 	private PrestadorServico prestador = new PrestadorServico();
-	private Collection<Telefone> telefones;
+	private Set<Telefone> telefones;
 	private Telefone telefone = new Telefone();
 	private DualListModel<TipoServico> servicosCredenciados;
 	private TipoServico servico = new TipoServico();
@@ -47,7 +47,7 @@ public class PrestadorCreateBean {
 		List<TipoServico> target = new ArrayList<TipoServico>();
 
 		servicosCredenciados = new DualListModel<TipoServico>(source, target);
-		telefones = businessTelefone.read();
+		telefones = prestador.getTelefones();
 	}
 
 	public String create() {
@@ -58,7 +58,7 @@ public class PrestadorCreateBean {
 			prestador = new PrestadorServico();
 			FacesContext.getCurrentInstance().addMessage("prestadorPanel",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Prestador criado com sucesso!", ""));
-			return null;
+			return "prestadores";
 		} catch (BusinessException e) {
 			FacesContext.getCurrentInstance().addMessage("prestadorPanel", new FacesMessage(FacesMessage.SEVERITY_WARN,
 					"Ocorreu um erro a criar o prestador!", e.getLocalizedMessage()));
@@ -83,19 +83,25 @@ public class PrestadorCreateBean {
 	public void createTelefone() {
 		try {
 			if (telefone.getCodigo() == null) {
+				telefones.add(telefone);
 				businessTelefone.create(telefone);
 				FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
 						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone criado com sucesso!", ""));
 			} else {
+				telefones.forEach(t -> {
+					if (t.getCodigo().equals(telefone.getCodigo())) {
+						t.setNumero(telefone.getNumero());
+					}
+				});
 				businessTelefone.update(telefone);
 				FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
 						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone atualizado com sucesso!", ""));
 			}
-			telefone = new Telefone();
 		} catch (BusinessException e) {
 			FacesContext.getCurrentInstance().addMessage("telefonesDataTable", new FacesMessage(
-					FacesMessage.SEVERITY_WARN, "Ocorreu um erro a criar o telefone!", e.getLocalizedMessage()));
+					FacesMessage.SEVERITY_ERROR, "Não foi possível criar ou atualizar o telefone!", ""));
 		}
+		telefone = new Telefone();
 	}
 
 	public void updateTelefone(Telefone telefone) {
@@ -149,11 +155,11 @@ public class PrestadorCreateBean {
 		this.telefone = telefone;
 	}
 
-	public Collection<Telefone> getTelefones() {
+	public Set<Telefone> getTelefones() {
 		return telefones;
 	}
 
-	public void setTelefones(Collection<Telefone> telefones) {
+	public void setTelefones(Set<Telefone> telefones) {
 		this.telefones = telefones;
 	}
 

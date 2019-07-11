@@ -52,4 +52,10 @@ public class SetCidadeDAO implements ICidadeDAO {
 		}
 		return false;
 	}
+
+	@Override
+	public Boolean contains(Cidade cidade) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

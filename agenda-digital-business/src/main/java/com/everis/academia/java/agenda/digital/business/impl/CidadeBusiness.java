@@ -4,6 +4,8 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
@@ -18,17 +20,20 @@ public class CidadeBusiness implements ICidadeBusiness {
 	// private ICidadeDAO cidadeDAO = new SetCidadeDAO();
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void create(Cidade cidade) throws BusinessException {
 		validaNome(cidade.getNome());
 		cidadeDAO.create(cidade);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Collection<Cidade> read() {
 		return cidadeDAO.read();
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(Cidade cidade) throws BusinessException {
 		validaNome(cidade.getNome());
 		validaCodigo(cidade.getCodigo());
@@ -36,6 +41,7 @@ public class CidadeBusiness implements ICidadeBusiness {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public Boolean delete(Integer codigo) throws BusinessException {
 		validaCodigo(codigo);
 		return cidadeDAO.delete(codigo);

@@ -3,12 +3,9 @@ package com.everis.academia.java.agenda.digital.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.stereotype.Repository;
-
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
-@Repository
 public class CidadeDAO implements ICidadeDAO {
 
 	private static final List<Cidade> cidades = new ArrayList<Cidade>();
@@ -75,5 +72,11 @@ public class CidadeDAO implements ICidadeDAO {
 		} else {
 			cidades.sort((o1, o2) -> o2.getNome().compareTo(o1.getNome()));
 		}
+	}
+
+	@Override
+	public Boolean contains(Cidade cidade) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
