@@ -1,8 +1,24 @@
 package com.everis.academia.java.agenda.digital.entidades;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_TIPO_SERVICO", schema = "public")
+@SequenceGenerator(name = "SQ_TIPO_SERVICO", sequenceName = "SQ_TIPO_SERVICO", initialValue = 1, allocationSize = 1, schema = "public")
 public class TipoServico {
 
+	@Id
+	@GeneratedValue(generator = "SQ_TIPO_SERVICO", strategy = GenerationType.SEQUENCE)
+	@Column(name = "CODIGO")
 	private Short codigo;
+
+	@Column(name = "NOME", length = 255, nullable = false, unique = false)
 	private String descricao;
 
 	public TipoServico() {

@@ -8,7 +8,7 @@ import javax.jws.WebParam.Mode;
 import javax.jws.WebResult;
 import javax.jws.WebService;
 
-import com.everis.academia.java.agenda.digital.business.IGenericBusiness;
+import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.business.impl.CidadeBusiness;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
@@ -16,7 +16,7 @@ import com.everis.academia.java.agenda.digital.entidades.Cidade;
 @WebService()
 public class CidadeSOAP {
 
-	private IGenericBusiness<Cidade, Integer> business = new CidadeBusiness();
+	private ICidadeBusiness business = new CidadeBusiness();
 
 	@WebMethod(operationName = "create")
 	@WebResult(name = "cidade")

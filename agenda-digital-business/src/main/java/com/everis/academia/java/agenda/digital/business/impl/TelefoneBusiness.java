@@ -47,11 +47,11 @@ public class TelefoneBusiness implements ITelefoneBusiness {
 	}
 
 	@Override
-	public Boolean delete(Integer codigo) throws BusinessException {
+	public void delete(Integer codigo) throws BusinessException {
 		if (codigo == null || codigo <= 0) {
 			throw new BusinessException("Codigo não pode ser inferior a zero ou nulo!");
 		}
-		return dao.delete(codigo);
+		dao.delete(codigo);
 	}
 
 }

@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.everis.academia.java.agenda.digital.business.IGenericBusiness;
+import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 @Service
-public class CidadeBusiness implements IGenericBusiness<Cidade, Integer> {
+public class CidadeBusiness implements ICidadeBusiness {
 
 	@Autowired
 	private ICidadeDAO cidadeDAO;

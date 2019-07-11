@@ -32,8 +32,8 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 	}
 
 	@Override
-	public Boolean delete(Integer codigo) throws BusinessException {
-		return dao.delete(codigo);
+	public void delete(Integer codigo) throws BusinessException {
+		dao.delete(codigo);
 	}
 
 }

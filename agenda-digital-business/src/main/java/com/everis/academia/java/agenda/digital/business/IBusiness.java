@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 
-public interface IGenericBusiness<T, K> {
+public interface IBusiness<T, K> {
 
 	void create(T entidade) throws BusinessException;
 
@@ -12,6 +12,5 @@ public interface IGenericBusiness<T, K> {
 
 	void update(T entidade) throws BusinessException;
 
-	void delete(K id) throws BusinessException;
-
+	void delete(K codigo) throws BusinessException;
 }

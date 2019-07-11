@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 
-import com.everis.academia.java.agenda.digital.business.IGenericBusiness;
+import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
@@ -18,7 +18,7 @@ import com.everis.academia.java.agenda.digital.entidades.Cidade;
 public class CidadeUpdateBean {
 
 	@Autowired
-	private IGenericBusiness<Cidade, Integer> business;
+	private ICidadeBusiness business;
 	private Cidade cidade = new Cidade();
 
 	public Cidade getCidade() {

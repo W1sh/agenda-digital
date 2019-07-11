@@ -19,7 +19,7 @@ public class Cidade implements Comparable<Cidade>, Serializable {
 
 	@Id
 	@GeneratedValue(generator = "SQ_CIDADE", strategy = GenerationType.SEQUENCE)
-	@Column(name = "CIDADE")
+	@Column(name = "CODIGO")
 	private Integer codigo;
 
 	@Column(name = "NOME", length = 255, nullable = false, unique = true)
