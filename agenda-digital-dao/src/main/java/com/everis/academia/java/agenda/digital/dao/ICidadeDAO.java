@@ -6,7 +6,5 @@ public interface ICidadeDAO extends IGenericDAO<Cidade> {
 
 	Boolean delete(Integer codigo);
 
-	Boolean contains(String nome);
-
 	Boolean contains(Cidade cidade);
 }

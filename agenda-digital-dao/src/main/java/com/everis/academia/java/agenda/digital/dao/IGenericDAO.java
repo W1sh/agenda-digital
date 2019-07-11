@@ -10,5 +10,5 @@ public interface IGenericDAO<T> {
 
 	void update(T entidade);
 
-	Boolean delete(T entidade);
+	void delete(T entidade);
 }

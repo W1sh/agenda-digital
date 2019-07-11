@@ -17,12 +17,11 @@ public class CidadeBusiness implements ICidadeBusiness {
 
 	@Autowired
 	private ICidadeDAO cidadeDAO;
-	// private ICidadeDAO cidadeDAO = new SetCidadeDAO();
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void create(Cidade cidade) throws BusinessException {
-		validaNome(cidade.getNome());
+		validaNome(cidade);
 		cidadeDAO.create(cidade);
 	}
 
@@ -35,7 +34,7 @@ public class CidadeBusiness implements ICidadeBusiness {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(Cidade cidade) throws BusinessException {
-		validaNome(cidade.getNome());
+		validaNome(cidade);
 		validaCodigo(cidade.getCodigo());
 		cidadeDAO.update(cidade);
 	}
@@ -47,11 +46,11 @@ public class CidadeBusiness implements ICidadeBusiness {
 		return cidadeDAO.delete(codigo);
 	}
 
-	private void validaNome(String nome) throws BusinessException {
-		if (nome == null || nome.trim().isEmpty()) {
+	private void validaNome(Cidade cidade) throws BusinessException {
+		if (cidade.getNome() == null || cidade.getNome().trim().isEmpty()) {
 			throw new BusinessException("Nome da cidade não pode ser vazio nem nulo!");
 		}
-		if (cidadeDAO.contains(nome)) {
+		if (cidadeDAO.contains(cidade)) {
 			throw new BusinessException("Esta cidade já existe!");
 		}
 	}

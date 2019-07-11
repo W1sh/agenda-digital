@@ -34,8 +34,8 @@ public class TelefoneDAO implements ITelefoneDAO {
 	}
 
 	@Override
-	public Boolean delete(Telefone entidade) {
-		return telefones.remove(entidade);
+	public void delete(Telefone entidade) {
+		telefones.remove(entidade);
 	}
 
 	@Override

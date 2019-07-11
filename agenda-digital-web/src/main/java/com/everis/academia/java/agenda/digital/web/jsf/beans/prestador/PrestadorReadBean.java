@@ -3,7 +3,6 @@ package com.everis.academia.java.agenda.digital.web.jsf.beans.prestador;
 import java.util.Collection;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +21,9 @@ public class PrestadorReadBean {
 
 	@Autowired
 	private IPrestadorServicoBusiness business;
-	private Collection<PrestadorServico> prestadores;
-
-	@PostConstruct
-	public void init() {
-		prestadores = business.read();
-	}
 
 	public Collection<PrestadorServico> getPrestadores() {
-		System.out.println(prestadores);
-		return prestadores;
-	}
-
-	public void setPrestadores(Collection<PrestadorServico> prestadores) {
-		this.prestadores = prestadores;
+		return business.read();
 	}
 
 	public String telefonesAsString(Set<Telefone> telefones) {

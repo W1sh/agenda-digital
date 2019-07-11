@@ -32,8 +32,8 @@ public class TipoServicoDAO implements ITipoServicoDAO {
 	}
 
 	@Override
-	public Boolean delete(TipoServico entidade) {
-		return delete(entidade.getCodigo());
+	public void delete(TipoServico entidade) {
+		delete(entidade.getCodigo());
 	}
 
 	@Override

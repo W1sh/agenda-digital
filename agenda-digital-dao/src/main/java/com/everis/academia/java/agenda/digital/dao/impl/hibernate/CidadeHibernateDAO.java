@@ -1,4 +1,4 @@
-package com.everis.academia.java.agenda.digital.dao.impl;
+package com.everis.academia.java.agenda.digital.dao.impl.hibernate;
 
 import java.util.Collection;
 
@@ -42,11 +42,10 @@ public class CidadeHibernateDAO implements ICidadeDAO {
 	}
 
 	@Override
-	public Boolean delete(Cidade entidade) {
+	public void delete(Cidade entidade) {
 		session = sessionFactory.getCurrentSession();
 		entidade = session.get(Cidade.class, entidade.getCodigo());
 		session.delete(entidade);
-		return null;
 	}
 
 	@Override
@@ -55,15 +54,6 @@ public class CidadeHibernateDAO implements ICidadeDAO {
 		Cidade cidade = session.get(Cidade.class, codigo);
 		session.delete(cidade);
 		return null;
-	}
-
-	@Override
-	public Boolean contains(String nome) {
-		session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(Cidade.class);
-		criteria.add(Restrictions.eq("nome", nome).ignoreCase());
-		criteria.setProjection(Projections.count("codigo"));
-		return (long) criteria.uniqueResult() > 0;
 	}
 
 	@Override

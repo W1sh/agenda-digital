@@ -13,7 +13,7 @@
 		<p:commandButton value="Create" action="#{cidadeCreate.call()}"
 			style="margin-bottom: 20px;margin-top: 20px;" />
 	</h:form>
-	<p:dataTable value="#{cidadeRead.cidades}" var="cidade" cellspacing="1"
+	<p:dataTable value="#{cidadeRead.getCidades()}" var="cidade" cellspacing="1"
 		border="1" id="dataTable" rows="10" paginator="true"
 		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 		rowsPerPageTemplate="5,10,15">

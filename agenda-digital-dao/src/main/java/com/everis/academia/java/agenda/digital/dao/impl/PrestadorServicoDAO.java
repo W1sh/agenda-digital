@@ -32,9 +32,8 @@ public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 	}
 
 	@Override
-	public Boolean delete(PrestadorServico entidade) {
+	public void delete(PrestadorServico entidade) {
 		// TODO Auto-generated method stub
-		return null;
 	}
 
 	@Override
