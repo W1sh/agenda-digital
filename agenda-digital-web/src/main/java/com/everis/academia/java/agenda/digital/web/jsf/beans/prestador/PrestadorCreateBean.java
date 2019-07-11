@@ -9,6 +9,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.CellEditEvent;
 import org.primefaces.model.DualListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -109,6 +110,19 @@ public class PrestadorCreateBean {
 			FacesContext.getCurrentInstance().addMessage("telefonesDataTable", new FacesMessage(
 					FacesMessage.SEVERITY_WARN, "Ocorreu um erro a apagar o telefone!", e.getLocalizedMessage()));
 		}
+	}
+
+	public void onTelefonesDataTableCellEdit(CellEditEvent event) {
+		Object oldValue = event.getOldValue();
+		Object newValue = event.getNewValue();
+
+		if (newValue != null && !newValue.equals(oldValue)) {
+			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
+					new FacesMessage(FacesMessage.SEVERITY_INFO,
+							"Telefone atualizado com sucesso! Valor antigo: " + oldValue + " | Novo valor: " + newValue,
+							""));
+		}
+
 	}
 
 	public void updateDualList(List<TipoServico> source, List<TipoServico> target) {

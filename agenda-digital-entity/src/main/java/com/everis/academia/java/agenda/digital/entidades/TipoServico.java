@@ -9,6 +9,11 @@ public class TipoServico {
 		super();
 	}
 
+	public TipoServico(Short codigo) {
+		this();
+		this.codigo = codigo;
+	}
+
 	public Short getCodigo() {
 		return codigo;
 	}

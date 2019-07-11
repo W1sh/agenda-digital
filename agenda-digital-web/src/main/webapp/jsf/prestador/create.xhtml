@@ -78,7 +78,8 @@
 					<p:outputLabel for="createNumero" value="Numero: " />
 					<p:inputText id="createNumero"
 						value="#{prestadorCreate.telefone.numero}" label="createNumero" />
-					<p:commandButton value="Save" action="#{prestadorCreate.createTelefone()}"
+					<p:commandButton value="Save"
+						action="#{prestadorCreate.createTelefone()}"
 						update=":prestadorForm:telefonesPanel" />
 					<p:messages for="createNumero" showSummary="true" showDetail="true" />
 				</h:panelGrid>
@@ -87,34 +88,39 @@
 					showSummary="true" showDetail="true" />
 				<p:dataTable value="#{prestadorCreate.telefones}" var="telefone"
 					cellspacing="1" border="1" id="telefonesDataTable"
-					scrollable="true" scrollHeight="200">
+					scrollable="true" scrollHeight="200" editable="true"
+					editMode="cell">
+					<p:ajax event="cellEdit"
+						listener="#{prestadorCreate.onTelefonesDataTableCellEdit}"
+						update=":prestadorForm:telefonesPanel" />
 					<p:columnGroup type="header">
 						<p:row>
-							<p:column rowspan="2" headerText="Codigo" />
-							<p:column rowspan="2" headerText="Numero" />
-							<p:column colspan="2" headerText="Ações" />
-						</p:row>
-						<p:row>
-							<p:column headerText="Update" />
+							<p:column headerText="Codigo" />
+							<p:column headerText="Numero" />
 							<p:column headerText="Delete" />
 						</p:row>
 					</p:columnGroup>
 					<p:column style="text-align: center;">
-						<p:outputLabel align="center">#{telefone.codigo}</p:outputLabel>
+						<p:outputLabel align="center" value="#{telefone.codigo}"></p:outputLabel>
 					</p:column>
 					<p:column style="text-align: center;">
-						<p:outputLabel>#{telefone.numero}</p:outputLabel>
-					</p:column>
-					<p:column style="text-align: center;">
-						<p:commandLink value="Update"
-							action="#{prestadorCreate.updateTelefone(telefone)}" />
+						<p:cellEditor>
+							<f:facet name="output">
+								<p:outputLabel value="#{telefone.numero}" />
+							</f:facet>
+							<f:facet name="input">
+								<p:inputText value="#{telefone.numero}" />
+							</f:facet>
+						</p:cellEditor>
 					</p:column>
 					<p:column style="text-align: center;">
 						<p:commandLink value="Delete"
 							action="#{prestadorCreate.deleteTelefone(telefone.codigo)}"
-							update=":prestadorForm:telefonesDataTable :prestadorForm:telefonesMsgs" />
+							update=":prestadorForm:telefonesPanel :prestadorForm:telefonesMsgs" />
 					</p:column>
 				</p:dataTable>
+				<br/>
+				<p:outputLabel value="Pode editar o numero ao clickar no campo e premir ENTER quando acabar." style="font-size: 11px;" />
 			</p:panel>
 			<br />
 			<p:panel id="tiposServicoPanel" header="Servicos Credenciados">
@@ -135,9 +141,8 @@
 					showSummary="true" showDetail="true" />
 				<p:pickList id="tiposServicoPickList"
 					value="#{prestadorCreate.servicosCredenciados}"
-					var="servicosCredenciado"
-					itemLabel="#{servicosCredenciado}"
-					itemValue="#{servicosCredenciado}" />
+					var="servicosCredenciado" itemLabel="#{servicosCredenciado.descricao}"
+					itemValue="#{servicosCredenciado}" converter="tipoServicoConverter"/>
 			</p:panel>
 			<p:commandButton value="Save" update="prestadorPanel"
 				action="#{prestadorCreate.create()}" style="margin-top: 20px" />

@@ -5,10 +5,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.everis.academia.java.agenda.digital.entidades.Cidade;
+import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
-@FacesConverter(value = "cidadeConverter")
-public class CidadeConverter implements Converter {
+@FacesConverter(value = "tipoServicoConverter")
+public class TipoServicoConverter implements Converter {
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
@@ -18,13 +18,9 @@ public class CidadeConverter implements Converter {
 		if (value.getClass() == String.class && value.trim().isEmpty()) {
 			return null;
 		}
-		if (value.contains("Escolha uma")) {
-			return null;
-		}
 
-		Integer codigo = Integer.valueOf(value);
-		return new Cidade(codigo);
-
+		Short codigo = Short.valueOf(value);
+		return new TipoServico(codigo);
 	}
 
 	@Override
@@ -36,9 +32,9 @@ public class CidadeConverter implements Converter {
 			return null;
 		}
 
-		Cidade cidade = (Cidade) value;
+		TipoServico servico = (TipoServico) value;
 
-		return cidade.getCodigo().toString();
+		return servico.getCodigo().toString();
 	}
 
 }
