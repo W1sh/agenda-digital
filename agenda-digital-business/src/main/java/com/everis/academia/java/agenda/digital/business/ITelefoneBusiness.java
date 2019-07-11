@@ -13,6 +13,6 @@ public interface ITelefoneBusiness {
 
 	void update(Telefone telefone) throws BusinessException;
 
-	Boolean delete(Short codigo) throws BusinessException;
+	Boolean delete(Integer codigo) throws BusinessException;
 
 }

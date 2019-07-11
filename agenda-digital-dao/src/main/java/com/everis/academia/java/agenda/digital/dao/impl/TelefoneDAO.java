@@ -39,8 +39,8 @@ public class TelefoneDAO implements ITelefoneDAO {
 	}
 
 	@Override
-	public Boolean delete(Short codigo) {
-		return null;
+	public Boolean delete(Integer codigo) {
+		return telefones.removeIf(c -> c.getCodigo().equals(codigo));
 	}
 
 }

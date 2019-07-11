@@ -47,7 +47,7 @@ public class TelefoneBusiness implements ITelefoneBusiness {
 	}
 
 	@Override
-	public Boolean delete(Short codigo) throws BusinessException {
+	public Boolean delete(Integer codigo) throws BusinessException {
 		if (codigo == null || codigo <= 0) {
 			throw new BusinessException("Codigo não pode ser inferior a zero ou nulo!");
 		}

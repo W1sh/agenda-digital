@@ -1,7 +1,6 @@
 package com.everis.academia.java.agenda.digital.web.filters;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -28,11 +27,13 @@ public class Filtro implements Filter {
 		long tempoFinal = System.currentTimeMillis();
 		String uri = ((HttpServletRequest) request).getRequestURI();
 
-		System.out.println("Tempo da requisição de " + uri + " demorou (ms): " + (tempoFinal - tempoInicial));
-		System.out.println("Parametros recebidos: ");
-		request.getParameterMap().forEach((key, value) -> {
-			System.out.println("Key: " + key + " | Value: " + Arrays.toString(value));
-		});
+		/*
+		 * System.out.println("Tempo da requisição de " + uri + " demorou (ms): " +
+		 * (tempoFinal - tempoInicial)); System.out.println("Parametros recebidos: ");
+		 * request.getParameterMap().forEach((key, value) -> {
+		 * System.out.println("Key: " + key + " | Value: " + Arrays.toString(value));
+		 * });
+		 */
 	}
 
 	@Override
