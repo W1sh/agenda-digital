@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Telefones</title>
+</h:head>
+
+<h:body>
+	<p:messages for="dataTable" id="msgs" showSummary="true"
+		showDetail="true"></p:messages>
+		
+	<p:dataTable value="#{telefoneRead.getTelefones()}" var="telefone" cellspacing="1"
+		border="1" id="dataTable" rows="10" paginator="true"
+		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		rowsPerPageTemplate="5,10,15">
+		<p:columnGroup type="header">
+			<p:row>
+				<p:column headerText="Codigo" />
+				<p:column headerText="Numero" />
+				<p:column headerText="Nome prestador" />
+			</p:row>
+
+		</p:columnGroup>
+		<p:column style="text-align: center;">
+			<p:outputLabel align="center">#{telefone.codigo}</p:outputLabel>
+		</p:column>
+		<p:column style="text-align: center;">
+			<p:outputLabel>#{telefone.numero}</p:outputLabel>
+		</p:column>
+		<p:column style="text-align: center;">
+			<p:outputLabel>#{telefone.prestadorServico.nome}</p:outputLabel>
+		</p:column>
+	</p:dataTable>
+</h:body>
+</html>

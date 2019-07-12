@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.everis.academia.java.agenda.digital.dao.IPrestadorServicoDAO;
 import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
+import com.everis.academia.java.agenda.digital.entidades.Telefone;
 
 @Repository
 public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
@@ -31,6 +32,12 @@ public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
 		session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(PrestadorServico.class);
 		return new HashSet<PrestadorServico>(criteria.list());
+	}
+
+	public Collection<Telefone> readTelefones() {
+		session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Telefone.class);
+		return new HashSet<Telefone>(criteria.list());
 	}
 
 	@Override

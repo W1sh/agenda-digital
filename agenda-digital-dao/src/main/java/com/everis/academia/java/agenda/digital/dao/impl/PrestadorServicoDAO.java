@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.everis.academia.java.agenda.digital.dao.IPrestadorServicoDAO;
 import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
+import com.everis.academia.java.agenda.digital.entidades.Telefone;
 
 public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 
@@ -31,6 +32,12 @@ public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 	@Override
 	public void delete(Integer codigo) {
 		prestadores.removeIf(p -> p.getCodigo().equals(codigo));
+	}
+
+	@Override
+	public Collection<Telefone> readTelefones() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

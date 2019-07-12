@@ -35,6 +35,11 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 		return dao.read();
 	}
 
+	@Transactional(readOnly = true)
+	public Collection<Telefone> readTelefones() {
+		return dao.readTelefones();
+	}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(PrestadorServico prestador) throws BusinessException {
