@@ -56,7 +56,7 @@ public class PrestadorCreateBean {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Prestador criado com sucesso!", ""));
 			return "prestadores";
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("prestadorPanel", new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesContext.getCurrentInstance().addMessage("prestadorPanel", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a criar o prestador!", e.getLocalizedMessage()));
 			return null;
 		}
@@ -71,8 +71,8 @@ public class PrestadorCreateBean {
 			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Tipo servico criado com sucesso!", ""));
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs", new FacesMessage(FacesMessage.SEVERITY_WARN,
-					"Ocorreu um erro a criar o tipo servico!", e.getLocalizedMessage()));
+			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs", new FacesMessage(
+					FacesMessage.SEVERITY_ERROR, "Ocorreu um erro a criar o tipo servico!", e.getLocalizedMessage()));
 		}
 	}
 
@@ -99,6 +99,10 @@ public class PrestadorCreateBean {
 		telefones.remove(new Telefone(numero));
 		FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone apagado com sucesso!", ""));
+	}
+
+	public String call() {
+		return "create";
 	}
 
 	public void updateDualList(List<TipoServico> source, List<TipoServico> target) {

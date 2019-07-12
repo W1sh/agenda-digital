@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Home page</title>
+</h:head>
+<h:body>
+	<h:form>
+		<p:growl>
+			<p:autoUpdate />
+		</p:growl>
+		<p:panelMenu style="width:300px">
+			<p:submenu label="Prestador serviços">
+				<p:menuitem value="Lista" action="#{prestadorRead.call()}"/>
+				<p:menuitem value="Create" action="#{prestadorCreate.call()}"/>
+			</p:submenu>
+			<p:submenu label="Cidade">
+				<p:menuitem value="Lista" action="#{cidadeRead.call()}" />
+				<p:menuitem value="Create" action="#{cidadeCreate.call()}"/>
+			</p:submenu>
+			<p:submenu label="Tipo serviços">
+				<p:menuitem value="Lista" action="#{tipoServicoRead.call()}"/>
+				<p:menuitem value="Create" action="#{tipoServicoCreate.call()}"/>
+			</p:submenu>
+			<p:separator />
+		</p:panelMenu>
+	</h:form>
+</h:body>
+</html>

@@ -22,7 +22,7 @@
 					value="#{prestadorCreate.prestador.cidade}" dynamic="true"
 					converter="cidadeConverter" style="width:125px">
 					<f:selectItem itemLabel="Escolha uma" itemValue="" />
-					<f:selectItems value="#{cidadeRead.cidades}" />
+					<f:selectItems value="#{cidadeRead.cidades}" var="cidade" itemLabel="#{cidade.nome}"/>
 				</p:selectOneMenu>
 				<p:messages for="cidade" showSummary="true" showDetail="true" />
 
@@ -142,8 +142,9 @@
 					itemLabel="#{servicosCredenciado.descricao}"
 					itemValue="#{servicosCredenciado}" converter="tipoServicoConverter" />
 			</p:panel>
-			<p:commandButton value="Save" update="prestadorPanel"
-				action="#{prestadorCreate.create()}" style="margin-top: 20px" />
+			<p:commandButton value="Save" update="prestadorForm"
+				action="#{prestadorCreate.create()}" 
+				style="margin-top: 20px" />
 		</p:panel>
 	</h:form>
 </h:body>

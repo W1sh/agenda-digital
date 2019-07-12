@@ -22,4 +22,8 @@ public class TipoServicoReadBean {
 	public Collection<TipoServico> getServicos() {
 		return business.read();
 	}
+
+	public String call() {
+		return "tipoServicos";
+	}
 }

@@ -10,6 +10,8 @@
 <p:messages for="dataTable" id="msgs" showSummary="true"
 			showDetail="true"></p:messages>
 	<h:form id="form">
+	<p:commandButton value="Create" action="#{prestadorCreate.call()}"
+			style="margin-bottom: 20px;margin-top: 20px;" />
 		<p:dataTable value="#{prestadorRead.getPrestadores()}" var="prestador"
 			cellspacing="2" border="1" id="dataTable" rows="10" paginator="true"
 			paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
