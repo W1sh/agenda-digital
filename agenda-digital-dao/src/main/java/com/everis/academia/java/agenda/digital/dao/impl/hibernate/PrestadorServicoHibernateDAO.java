@@ -1,6 +1,7 @@
 package com.everis.academia.java.agenda.digital.dao.impl.hibernate;
 
 import java.util.Collection;
+import java.util.HashSet;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -29,7 +30,7 @@ public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
 	public Collection<PrestadorServico> read() {
 		session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(PrestadorServico.class);
-		return criteria.list();
+		return new HashSet<PrestadorServico>(criteria.list());
 	}
 
 	@Override
