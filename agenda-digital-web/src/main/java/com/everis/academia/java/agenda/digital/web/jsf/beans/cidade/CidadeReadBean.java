@@ -22,8 +22,4 @@ public class CidadeReadBean {
 	public Collection<Cidade> getCidades() {
 		return business.read();
 	}
-
-	public String call() {
-		return "cidades";
-	}
 }

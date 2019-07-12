@@ -20,9 +20,10 @@
 				<p:outputLabel for="cidade" value="Cidade: " />
 				<p:selectOneMenu id="cidade"
 					value="#{prestadorCreate.prestador.cidade}" dynamic="true"
-					converter="cidadeConverter" style="width:125px">
+					converter="cidadeConverter">
 					<f:selectItem itemLabel="Escolha uma" itemValue="" />
-					<f:selectItems value="#{cidadeRead.cidades}" var="cidade" itemLabel="#{cidade.nome}"/>
+					<f:selectItems value="#{cidadeRead.cidades}" var="cidade"
+						itemLabel="#{cidade.nome}" />
 				</p:selectOneMenu>
 				<p:messages for="cidade" showSummary="true" showDetail="true" />
 
@@ -40,8 +41,7 @@
 
 				<p:outputLabel for="tipoLogradouro" value="Tipo Logradouro: " />
 				<p:selectOneMenu id="tipoLogradouro"
-					value="#{prestadorCreate.prestador.tipoLogradouro}" dynamic="true"
-					style="width:125px">
+					value="#{prestadorCreate.prestador.tipoLogradouro}" dynamic="true">
 					<f:selectItems value="#{prestadorCreate.getLogradouros()}" />
 				</p:selectOneMenu>
 				<p:messages for="tipoLogradouro" showSummary="true"
@@ -143,8 +143,7 @@
 					itemValue="#{servicosCredenciado}" converter="tipoServicoConverter" />
 			</p:panel>
 			<p:commandButton value="Save" update="prestadorForm"
-				action="#{prestadorCreate.create()}" 
-				style="margin-top: 20px" />
+				action="#{prestadorCreate.create()}" style="margin-top: 20px" />
 		</p:panel>
 	</h:form>
 </h:body>

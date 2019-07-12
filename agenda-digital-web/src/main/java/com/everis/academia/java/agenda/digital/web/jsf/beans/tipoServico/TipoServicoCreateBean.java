@@ -42,10 +42,6 @@ public class TipoServicoCreateBean {
 		}
 	}
 
-	public String call() {
-		return "create";
-	}
-
 	public void clean() {
 		servico = new TipoServico();
 	}

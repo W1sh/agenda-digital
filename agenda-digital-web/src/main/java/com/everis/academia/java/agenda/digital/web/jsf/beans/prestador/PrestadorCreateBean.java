@@ -101,10 +101,6 @@ public class PrestadorCreateBean {
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone apagado com sucesso!", ""));
 	}
 
-	public String call() {
-		return "create";
-	}
-
 	public void updateDualList(List<TipoServico> source, List<TipoServico> target) {
 		servicosCredenciados = new DualListModel<TipoServico>(source, target);
 	}

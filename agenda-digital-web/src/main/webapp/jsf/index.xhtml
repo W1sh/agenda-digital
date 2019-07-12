@@ -13,16 +13,16 @@
 		</p:growl>
 		<p:panelMenu style="width:300px">
 			<p:submenu label="Prestador serviços">
-				<p:menuitem value="Lista" action="#{prestadorRead.call()}"/>
-				<p:menuitem value="Create" action="#{prestadorCreate.call()}"/>
+				<p:menuitem value="Lista" action="prestador/prestadores.xhtml"/>
+				<p:menuitem value="Create" action="prestador/create.xhtml"/>
 			</p:submenu>
 			<p:submenu label="Cidade">
-				<p:menuitem value="Lista" action="#{cidadeRead.call()}" />
-				<p:menuitem value="Create" action="#{cidadeCreate.call()}"/>
+				<p:menuitem value="Lista" action="cidade/cidades.xhtml" />
+				<p:menuitem value="Create" action="cidade/create.xhtml"/>
 			</p:submenu>
 			<p:submenu label="Tipo serviços">
-				<p:menuitem value="Lista" action="#{tipoServicoRead.call()}"/>
-				<p:menuitem value="Create" action="#{tipoServicoCreate.call()}"/>
+				<p:menuitem value="Lista" action="tipoServico/tipoServicos.xhtml"/>
+				<p:menuitem value="Create" action="tipoServico/create.xhtml"/>
 			</p:submenu>
 			<p:separator />
 		</p:panelMenu>

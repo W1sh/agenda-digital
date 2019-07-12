@@ -39,9 +39,4 @@ public class PrestadorReadBean {
 		}
 		return "";
 	}
-
-	public String call() {
-		System.out.println("redirect");
-		return "prestadores";
-	}
 }
