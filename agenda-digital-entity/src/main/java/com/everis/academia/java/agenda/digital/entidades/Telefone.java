@@ -65,7 +65,6 @@ public class Telefone {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
-		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
 		return result;
 	}
 
@@ -82,11 +81,6 @@ public class Telefone {
 			if (other.codigo != null)
 				return false;
 		} else if (!codigo.equals(other.codigo))
-			return false;
-		if (numero == null) {
-			if (other.numero != null)
-				return false;
-		} else if (!numero.equals(other.numero))
 			return false;
 		return true;
 	}

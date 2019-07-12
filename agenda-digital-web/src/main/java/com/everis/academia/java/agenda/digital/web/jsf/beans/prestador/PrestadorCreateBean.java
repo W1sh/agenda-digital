@@ -36,6 +36,8 @@ public class PrestadorCreateBean {
 	private DualListModel<TipoServico> servicosCredenciados;
 	private TipoServico servico = new TipoServico();
 
+	private static int codigoTemporario = 1;
+
 	@PostConstruct
 	public void init() {
 		List<TipoServico> source = new ArrayList<TipoServico>(businessTipoServico.read());
@@ -48,6 +50,7 @@ public class PrestadorCreateBean {
 		try {
 			if (!businessPrestador.emailExists(prestador.getEmail())) {
 				prestador.getServicosCredenciados().addAll(servicosCredenciados.getTarget());
+				prestador.getTelefones().forEach(t -> t.setCodigo(null));
 				businessPrestador.create(prestador);
 				prestador = new PrestadorServico();
 				FacesContext.getCurrentInstance().addMessage("prestadorPanel",
@@ -85,6 +88,8 @@ public class PrestadorCreateBean {
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Telefone com esse numero já existe", ""));
 			return;
 		}
+		prestador.getTelefones().remove(telefone); // if exists remove, if not return false
+		telefone.setCodigo(codigoTemporario++);
 		prestador.getTelefones().add(telefone);
 		FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone atualizado com sucesso!", ""));
