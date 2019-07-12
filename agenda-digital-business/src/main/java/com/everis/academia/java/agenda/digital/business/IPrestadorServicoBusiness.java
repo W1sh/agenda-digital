@@ -10,4 +10,6 @@ public interface IPrestadorServicoBusiness extends IBusiness<PrestadorServico, I
 	Collection<Telefone> readTelefones();
 
 	Boolean numeroTelefoneExists(Long numero);
+
+	Boolean emailExists(String email);
 }

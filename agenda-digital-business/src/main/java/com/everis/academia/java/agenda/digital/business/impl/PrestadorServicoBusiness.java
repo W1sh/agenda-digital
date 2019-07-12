@@ -61,9 +61,15 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional(readOnly = true)
 	public Boolean numeroTelefoneExists(Long numero) {
 		return dao.numeroTelefoneExists(numero);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Boolean emailExists(String email) {
+		return dao.emailExists(email);
 	}
 
 	private void validaCodigo(Integer codigo) throws BusinessException {
@@ -119,4 +125,5 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 			}
 		}
 	}
+
 }

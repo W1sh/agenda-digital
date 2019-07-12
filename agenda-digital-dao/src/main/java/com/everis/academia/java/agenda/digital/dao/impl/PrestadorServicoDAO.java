@@ -46,4 +46,10 @@ public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 		return null;
 	}
 
+	@Override
+	public Boolean emailExists(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -49,17 +49,22 @@ public class PrestadorCreateBean {
 
 	public String create() {
 		try {
-			prestador.getServicosCredenciados().addAll(servicosCredenciados.getTarget());
-			businessPrestador.create(prestador);
-			prestador = new PrestadorServico();
-			FacesContext.getCurrentInstance().addMessage("prestadorPanel",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Prestador criado com sucesso!", ""));
-			return "prestadores";
+			if (!businessPrestador.emailExists(prestador.getEmail())) {
+				prestador.getServicosCredenciados().addAll(servicosCredenciados.getTarget());
+				businessPrestador.create(prestador);
+				prestador = new PrestadorServico();
+				FacesContext.getCurrentInstance().addMessage("prestadorPanel",
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Prestador criado com sucesso!", ""));
+				return "prestadores";
+			} else {
+				FacesContext.getCurrentInstance().addMessage("email",
+						new FacesMessage(FacesMessage.SEVERITY_WARN, "Email já existe!", ""));
+			}
 		} catch (BusinessException e) {
 			FacesContext.getCurrentInstance().addMessage("prestadorPanel", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a criar o prestador!", e.getLocalizedMessage()));
-			return null;
 		}
+		return null;
 	}
 
 	public void createServico() {
@@ -68,10 +73,10 @@ public class PrestadorCreateBean {
 			prestador.getServicosCredenciados().add(servico);
 			updateDualList(new ArrayList<TipoServico>(businessTipoServico.read()), new ArrayList<TipoServico>());
 			servico = new TipoServico();
-			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs",
+			FacesContext.getCurrentInstance().addMessage("tiposServicoPickList",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Tipo servico criado com sucesso!", ""));
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("tipoServicoMsgs", new FacesMessage(
+			FacesContext.getCurrentInstance().addMessage("tiposServicoPickList", new FacesMessage(
 					FacesMessage.SEVERITY_ERROR, "Ocorreu um erro a criar o tipo servico!", e.getLocalizedMessage()));
 		}
 	}
@@ -79,7 +84,7 @@ public class PrestadorCreateBean {
 	public void createTelefone() {
 		if (businessPrestador.numeroTelefoneExists(telefone.getNumero())) {
 			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Telefone com esse numero já existe!", ""));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Telefone com esse numero já existe", ""));
 			return;
 		}
 		telefone.setPrestadorServico(prestador);

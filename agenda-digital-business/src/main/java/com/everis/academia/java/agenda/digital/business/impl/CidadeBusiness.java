@@ -46,6 +46,12 @@ public class CidadeBusiness implements ICidadeBusiness {
 		cidadeDAO.delete(codigo);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Boolean isAssigned(Integer codigo) {
+		return cidadeDAO.isAssigned(codigo);
+	}
+
 	private void validaNome(Cidade cidade) throws BusinessException {
 		if (cidade.getNome() == null || cidade.getNome().trim().isEmpty()) {
 			throw new BusinessException("Nome da cidade não pode ser vazio nem nulo!");
@@ -60,4 +66,5 @@ public class CidadeBusiness implements ICidadeBusiness {
 			throw new BusinessException("Codigo não pode ser inferior a zero ou nulo!");
 		}
 	}
+
 }

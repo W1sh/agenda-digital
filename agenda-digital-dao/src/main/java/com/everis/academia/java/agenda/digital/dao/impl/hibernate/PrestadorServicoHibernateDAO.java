@@ -67,4 +67,13 @@ public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
 		return (long) criteria.uniqueResult() > 0;
 	}
 
+	@Override
+	public Boolean emailExists(String email) {
+		session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PrestadorServico.class);
+		criteria.add(Restrictions.eq("email", email));
+		criteria.setProjection(Projections.count("codigo"));
+		return (long) criteria.uniqueResult() > 0;
+	}
+
 }

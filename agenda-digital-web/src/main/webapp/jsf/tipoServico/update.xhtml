@@ -22,8 +22,10 @@
 				</p:inputText>
 				<p:messages for="descricao" showSummary="true" showDetail="true" />
 			</h:panelGrid>
+			<p:commandButton value="Back" action="tipoServicos.xhtml"
+				style="margin-top: 20px" />
 			<p:commandButton value="Save" update="panel"
-				action="#{tipoServicoUpdate.update()}" />
+				action="#{tipoServicoUpdate.update()}" style="margin-top: 20px; margin-left: 5px;" />
 		</p:panel>
 	</h:form>
 </h:body>

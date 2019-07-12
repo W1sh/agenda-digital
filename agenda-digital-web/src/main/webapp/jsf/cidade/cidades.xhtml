@@ -10,11 +10,13 @@
 	<p:messages for="dataTable" id="msgs" showSummary="true"
 		showDetail="true"></p:messages>
 	<h:form>
+		<p:commandButton value="Back to Home Page" action="/jsf/index.xhtml"
+			style="margin-top: 20px;" />
 		<p:commandButton value="Create" action="create.xhtml"
-			style="margin-bottom: 20px;margin-top: 20px;" />
+			style="margin-bottom: 20px;margin-left:5px;" />
 	</h:form>
-	<p:dataTable value="#{cidadeRead.getCidades()}" var="cidade" cellspacing="1"
-		border="1" id="dataTable" rows="10" paginator="true"
+	<p:dataTable value="#{cidadeRead.getCidades()}" var="cidade"
+		cellspacing="1" border="1" id="dataTable" rows="10" paginator="true"
 		paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 		rowsPerPageTemplate="5,10,15">
 		<p:columnGroup type="header">

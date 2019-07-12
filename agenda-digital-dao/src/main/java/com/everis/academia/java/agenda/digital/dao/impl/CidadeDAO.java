@@ -68,4 +68,10 @@ public class CidadeDAO implements ICidadeDAO {
 		}
 		return false;
 	}
+
+	@Override
+	public Boolean isAssigned(Integer codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

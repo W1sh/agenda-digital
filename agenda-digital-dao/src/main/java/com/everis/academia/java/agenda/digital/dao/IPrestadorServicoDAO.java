@@ -10,4 +10,6 @@ public interface IPrestadorServicoDAO extends IGenericDAO<PrestadorServico, Inte
 	Collection<Telefone> readTelefones();
 
 	Boolean numeroTelefoneExists(Long numero);
+
+	Boolean emailExists(String email);
 }

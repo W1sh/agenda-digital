@@ -46,6 +46,12 @@ public class TipoServicoBusiness implements ITipoServicoBusiness {
 		dao.delete(codigo);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Boolean isAssigned(Short codigo) {
+		return dao.isAssigned(codigo);
+	}
+
 	private void validaNome(TipoServico tipoServico) throws BusinessException {
 		if (tipoServico.getDescricao() == null || tipoServico.getDescricao().trim().isEmpty()) {
 			throw new BusinessException("Descricao do tipo servico não pode ser vazio nem nulo!");

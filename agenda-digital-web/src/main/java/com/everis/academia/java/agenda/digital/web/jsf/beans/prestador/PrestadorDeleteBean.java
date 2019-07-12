@@ -21,12 +21,11 @@ public class PrestadorDeleteBean {
 
 	public void delete(Integer codigo) {
 		try {
-			System.out.println("ALLO");
 			business.delete(codigo);
 			FacesContext.getCurrentInstance().addMessage("dataTable",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Prestador apagado com sucesso!", ""));
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("dataTable", new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesContext.getCurrentInstance().addMessage("dataTable", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a apagar o prestador!", e.getLocalizedMessage()));
 		}
 	}

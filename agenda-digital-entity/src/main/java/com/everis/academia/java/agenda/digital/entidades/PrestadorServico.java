@@ -53,10 +53,10 @@ public class PrestadorServico {
 	@Column(name = "COMPLEMENTO", length = 255, nullable = false, unique = false)
 	private String complemento;
 
-	@Column(name = "NUMERO", length = 255, nullable = false, unique = false)
+	@Column(name = "NUMERO", length = 50, nullable = false, unique = false)
 	private String numero;
 
-	@Column(name = "EMAIL", length = 255, nullable = false, unique = false)
+	@Column(name = "EMAIL", length = 255, nullable = false, unique = true)
 	private String email;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "prestadorServico", orphanRemoval = true, targetEntity = Telefone.class)

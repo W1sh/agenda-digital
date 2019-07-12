@@ -25,7 +25,7 @@ public class CidadeDeleteBean {
 			FacesContext.getCurrentInstance().addMessage("dataTable",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cidade apagada com sucesso!", ""));
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("dataTable", new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesContext.getCurrentInstance().addMessage("dataTable", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a apagar a cidade!", e.getLocalizedMessage()));
 		}
 	}

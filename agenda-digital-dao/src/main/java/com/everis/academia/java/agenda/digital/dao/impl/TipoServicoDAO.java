@@ -33,4 +33,10 @@ public class TipoServicoDAO implements ITipoServicoDAO {
 		tipoServicos.removeIf(ts -> ts.getCodigo().equals(codigo));
 	}
 
+	@Override
+	public Boolean isAssigned(Short codigo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -13,10 +13,13 @@
 				<p:inputText id="nome" value="#{cidadeCreate.cidade.nome}"
 					label="nome">
 				</p:inputText>
-				<p:messages for="nome" showSummary="true" showDetail="true"/>
+				<p:messages for="nome" showSummary="true" showDetail="true" />
 			</h:panelGrid>
+			<p:commandButton value="Back" action="cidades.xhtml"
+				style="margin-top: 20px" />
 			<p:commandButton value="Save" update="panel"
-				action="#{cidadeCreate.create()}"/>
+				action="#{cidadeCreate.create()}"
+				style="margin-top: 20px; margin-left: 5px;" />
 		</p:panel>
 	</h:form>
 </h:body>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
+import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
 
 @Repository
 public class CidadeHibernateDAO implements ICidadeDAO {
@@ -55,6 +56,15 @@ public class CidadeHibernateDAO implements ICidadeDAO {
 		Criteria criteria = session.createCriteria(Cidade.class);
 		criteria.add(Restrictions.and(Restrictions.eq("nome", cidade.getNome()).ignoreCase(),
 				Restrictions.or(Restrictions.isNotNull("codigo"), Restrictions.ne("codigo", cidade.getCodigo()))));
+		criteria.setProjection(Projections.count("codigo"));
+		return (long) criteria.uniqueResult() > 0;
+	}
+
+	@Override
+	public Boolean isAssigned(Integer codigo) {
+		session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PrestadorServico.class);
+		criteria.add(Restrictions.eq("cidade", codigo));
 		criteria.setProjection(Projections.count("codigo"));
 		return (long) criteria.uniqueResult() > 0;
 	}

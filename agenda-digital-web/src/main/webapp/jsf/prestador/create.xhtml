@@ -9,7 +9,7 @@
 <h:body>
 	<h:form id="prestadorForm">
 		<p:messages for="prestadorPanel" showSummary="true" showDetail="true" />
-		<p:panel id="prestadorPanel" header="Create prestador serviços">
+		<p:panel id="prestadorPanel" header="Prestador Serviço">
 			<p:panelGrid columns="3" cellpadding="5" styleClass="ui-noborder">
 				<p:outputLabel for="nome" value="Nome: " />
 				<p:inputText id="nome" value="#{prestadorCreate.prestador.nome}"
@@ -35,7 +35,7 @@
 
 				<p:outputLabel for="cep" value="CEP: " />
 				<p:inputText id="cep" value="#{prestadorCreate.prestador.cep}"
-					label="nome">
+					label="cep">
 				</p:inputText>
 				<p:messages for="cep" showSummary="true" showDetail="true" />
 
@@ -49,25 +49,26 @@
 
 				<p:outputLabel for="logradouro" value="Logradouro: " />
 				<p:inputText id="logradouro"
-					value="#{prestadorCreate.prestador.logradouro}" label="bairro">
+					value="#{prestadorCreate.prestador.logradouro}" label="logradouro">
 				</p:inputText>
 				<p:messages for="logradouro" showSummary="true" showDetail="true" />
 
 				<p:outputLabel for="complemento" value="Complemento: " />
 				<p:inputText id="complemento"
-					value="#{prestadorCreate.prestador.complemento}" label="bairro">
+					value="#{prestadorCreate.prestador.complemento}"
+					label="complemento">
 				</p:inputText>
 				<p:messages for="complemento" showSummary="true" showDetail="true" />
 
 				<p:outputLabel for="numero" value="Numero: " />
 				<p:inputText id="numero" value="#{prestadorCreate.prestador.numero}"
-					label="bairro">
+					label="numero">
 				</p:inputText>
 				<p:messages for="numero" showSummary="true" showDetail="true" />
 
 				<p:outputLabel for="email" value="Email: " />
 				<p:inputText id="email" value="#{prestadorCreate.prestador.email}"
-					label="bairro">
+					label="email">
 				</p:inputText>
 				<p:messages for="email" showSummary="true" showDetail="true" />
 			</p:panelGrid>
@@ -130,7 +131,7 @@
 					<p:commandButton value="Save"
 						action="#{prestadorCreate.createServico()}"
 						update=":prestadorForm:tiposServicoPanel" />
-					<p:messages for="createDescricao" id="tipoServicoMsgs"
+					<p:messages for="createDescricao" 
 						showSummary="true" showDetail="true" />
 				</h:panelGrid>
 				<br />
@@ -142,8 +143,11 @@
 					itemLabel="#{servicosCredenciado.descricao}"
 					itemValue="#{servicosCredenciado}" converter="tipoServicoConverter" />
 			</p:panel>
+			<p:commandButton value="Back" action="prestadores.xhtml"
+				style="margin-top: 20px" />
 			<p:commandButton value="Save" update="prestadorForm"
-				action="#{prestadorCreate.create()}" style="margin-top: 20px" />
+				action="#{prestadorCreate.create()}"
+				style="margin-top: 20px; margin-left: 5px;" />
 		</p:panel>
 	</h:form>
 </h:body>
