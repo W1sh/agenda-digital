@@ -22,7 +22,8 @@
 					value="#{prestadorUpdate.prestador.cidade}" dynamic="true"
 					converter="cidadeConverter" style="width:125px">
 					<f:selectItem itemLabel="Escolha uma" itemValue="" />
-					<f:selectItems value="#{cidadeRead.cidades}" />
+					<f:selectItems value="#{cidadeRead.cidades}" var="cidade"
+						itemLabel="#{cidade.nome}" />
 				</p:selectOneMenu>
 				<p:messages for="cidade" showSummary="true" showDetail="true" />
 

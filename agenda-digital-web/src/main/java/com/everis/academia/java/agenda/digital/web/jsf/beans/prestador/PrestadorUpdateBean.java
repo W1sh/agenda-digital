@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -37,15 +36,6 @@ public class PrestadorUpdateBean {
 	private Telefone telefone = new Telefone();
 	private DualListModel<TipoServico> servicosCredenciados;
 	private TipoServico servico = new TipoServico();
-
-	@PostConstruct
-	public void init() {
-		List<TipoServico> source = new ArrayList<TipoServico>(businessTipoServico.read());
-		List<TipoServico> target = new ArrayList<TipoServico>();
-
-		servicosCredenciados = new DualListModel<TipoServico>(source, target);
-		telefones = prestador.getTelefones();
-	}
 
 	public String create() {
 		try {
@@ -103,7 +93,13 @@ public class PrestadorUpdateBean {
 
 	public String call(PrestadorServico prestadorServico) {
 		prestador = prestadorServico;
-		return "create";
+		List<TipoServico> source = new ArrayList<TipoServico>(businessTipoServico.read());
+		source.removeIf(servico -> prestadorServico.getServicosCredenciados().contains(servico));
+		List<TipoServico> target = new ArrayList<TipoServico>(prestador.getServicosCredenciados());
+
+		servicosCredenciados = new DualListModel<TipoServico>(source, target);
+		telefones = prestador.getTelefones();
+		return "update";
 	}
 
 	public void updateDualList(List<TipoServico> source, List<TipoServico> target) {
