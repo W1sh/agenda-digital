@@ -40,13 +40,6 @@ public class TipoServicoHibernateDAO implements ITipoServicoDAO {
 	}
 
 	@Override
-	public void delete(TipoServico entidade) {
-		session = sessionFactory.getCurrentSession();
-		entidade = session.get(TipoServico.class, entidade.getCodigo());
-		session.delete(entidade);
-	}
-
-	@Override
 	public void delete(Short codigo) {
 		session = sessionFactory.getCurrentSession();
 		TipoServico servico = session.get(TipoServico.class, codigo);

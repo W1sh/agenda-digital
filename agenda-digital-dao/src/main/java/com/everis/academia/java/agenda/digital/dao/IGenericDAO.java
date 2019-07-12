@@ -2,7 +2,7 @@ package com.everis.academia.java.agenda.digital.dao;
 
 import java.util.Collection;
 
-public interface IGenericDAO<T> {
+public interface IGenericDAO<T, K> {
 
 	void create(T entidade);
 
@@ -10,5 +10,5 @@ public interface IGenericDAO<T> {
 
 	void update(T entidade);
 
-	void delete(T entidade);
+	void delete(K codigo);
 }

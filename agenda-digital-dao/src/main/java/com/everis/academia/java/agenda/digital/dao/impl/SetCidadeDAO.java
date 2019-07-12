@@ -39,11 +39,6 @@ public class SetCidadeDAO implements ICidadeDAO {
 	}
 
 	@Override
-	public void delete(Cidade entidade) {
-		cidades.remove(entidade);
-	}
-
-	@Override
 	public Boolean contains(Cidade cidade) {
 		for (Cidade c : cidades) {
 			if (c.getNome().trim().equals(cidade.getNome())) {

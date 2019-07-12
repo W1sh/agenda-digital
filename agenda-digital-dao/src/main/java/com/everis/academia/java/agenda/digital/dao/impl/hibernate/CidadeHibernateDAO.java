@@ -42,13 +42,6 @@ public class CidadeHibernateDAO implements ICidadeDAO {
 	}
 
 	@Override
-	public void delete(Cidade entidade) {
-		session = sessionFactory.getCurrentSession();
-		entidade = session.get(Cidade.class, entidade.getCodigo());
-		session.delete(entidade);
-	}
-
-	@Override
 	public void delete(Integer codigo) {
 		session = sessionFactory.getCurrentSession();
 		Cidade cidade = session.get(Cidade.class, codigo);

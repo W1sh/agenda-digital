@@ -29,11 +29,6 @@ public class TipoServicoDAO implements ITipoServicoDAO {
 	}
 
 	@Override
-	public void delete(TipoServico entidade) {
-		delete(entidade.getCodigo());
-	}
-
-	@Override
 	public void delete(Short codigo) {
 		tipoServicos.removeIf(ts -> ts.getCodigo().equals(codigo));
 	}

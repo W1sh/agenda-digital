@@ -2,7 +2,6 @@ package com.everis.academia.java.agenda.digital.dao;
 
 import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
 
-public interface IPrestadorServicoDAO extends IGenericDAO<PrestadorServico> {
+public interface IPrestadorServicoDAO extends IGenericDAO<PrestadorServico, Integer> {
 
-	Boolean delete(Integer codigo);
 }

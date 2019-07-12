@@ -42,11 +42,6 @@ public class CidadeDAO implements ICidadeDAO {
 		cidades.removeIf(c -> c.getCodigo().equals(codigo));
 	}
 
-	@Override
-	public void delete(Cidade entidade) {
-		cidades.remove(entidade);
-	}
-
 	public static void sort(boolean reversed) {
 		if (!reversed) {
 			cidades.sort((o1, o2) -> o1.getCodigo().compareTo(o2.getCodigo()));

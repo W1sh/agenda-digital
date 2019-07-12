@@ -29,13 +29,8 @@ public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 	}
 
 	@Override
-	public void delete(PrestadorServico entidade) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public Boolean delete(Integer codigo) {
-		return prestadores.removeIf(c -> c.getCodigo().equals(codigo));
+	public void delete(Integer codigo) {
+		prestadores.removeIf(p -> p.getCodigo().equals(codigo));
 	}
 
 }

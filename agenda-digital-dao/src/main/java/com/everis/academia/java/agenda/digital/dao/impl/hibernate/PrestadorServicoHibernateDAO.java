@@ -40,16 +40,10 @@ public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
 	}
 
 	@Override
-	public void delete(PrestadorServico entidade) {
+	public void delete(Integer codigo) {
 		session = sessionFactory.getCurrentSession();
-		entidade = session.get(PrestadorServico.class, entidade.getCodigo());
+		PrestadorServico entidade = session.get(PrestadorServico.class, codigo);
 		session.delete(entidade);
-	}
-
-	@Override
-	public Boolean delete(Integer codigo) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
