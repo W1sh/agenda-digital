@@ -40,4 +40,10 @@ public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 		return null;
 	}
 
+	@Override
+	public Boolean numeroTelefoneExists(Long numero) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

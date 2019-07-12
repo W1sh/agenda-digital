@@ -6,6 +6,8 @@ import java.util.HashSet;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,6 +36,7 @@ public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
 		return new HashSet<PrestadorServico>(criteria.list());
 	}
 
+	@Override
 	public Collection<Telefone> readTelefones() {
 		session = sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Telefone.class);
@@ -52,6 +55,15 @@ public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
 		session = sessionFactory.getCurrentSession();
 		PrestadorServico entidade = session.get(PrestadorServico.class, codigo);
 		session.delete(entidade);
+	}
+
+	@Override
+	public Boolean numeroTelefoneExists(Long numero) {
+		session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(Telefone.class);
+		criteria.add(Restrictions.eq("numero", numero));
+		criteria.setProjection(Projections.count("codigo"));
+		return (long) criteria.uniqueResult() > 0;
 	}
 
 }

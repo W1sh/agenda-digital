@@ -35,6 +35,7 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 		return dao.read();
 	}
 
+	@Override
 	@Transactional(readOnly = true)
 	public Collection<Telefone> readTelefones() {
 		return dao.readTelefones();
@@ -57,6 +58,12 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 	public void delete(Integer codigo) throws BusinessException {
 		validaCodigo(codigo);
 		dao.delete(codigo);
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Boolean numeroTelefoneExists(Long numero) {
+		return dao.numeroTelefoneExists(numero);
 	}
 
 	private void validaCodigo(Integer codigo) throws BusinessException {

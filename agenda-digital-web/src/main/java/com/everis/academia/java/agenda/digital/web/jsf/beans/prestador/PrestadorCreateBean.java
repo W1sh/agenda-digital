@@ -77,13 +77,11 @@ public class PrestadorCreateBean {
 	}
 
 	public void createTelefone() {
-		telefones.forEach(t -> {
-			if (t.getNumero().equals(telefone.getNumero())) {
-				FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone com esse numero já existe!", ""));
-				return;
-			}
-		});
+		if (businessPrestador.numeroTelefoneExists(telefone.getNumero())) {
+			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Telefone com esse numero já existe!", ""));
+			return;
+		}
 		telefone.setPrestadorServico(prestador);
 		telefones.add(telefone);
 		FacesContext.getCurrentInstance().addMessage("telefonesDataTable",

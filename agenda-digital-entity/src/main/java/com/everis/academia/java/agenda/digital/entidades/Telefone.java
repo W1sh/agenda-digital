@@ -20,7 +20,7 @@ public class Telefone {
 	@Column(name = "CODIGO")
 	private Integer codigo;
 
-	@Column(name = "NUMERO", nullable = false, unique = false)
+	@Column(name = "NUMERO", nullable = false, unique = true)
 	private Long numero;
 
 	@ManyToOne(targetEntity = PrestadorServico.class)
