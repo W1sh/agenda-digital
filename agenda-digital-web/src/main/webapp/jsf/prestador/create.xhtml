@@ -100,9 +100,6 @@
 							<p:column headerText="Delete" />
 						</p:row>
 					</p:columnGroup>
-					<p:column style="text-align: center;" display="none">
-						<p:outputLabel align="center" value="#{telefone.codigo}"></p:outputLabel>
-					</p:column>
 					<p:column style="text-align: center;">
 						<p:outputLabel value="#{telefone.numero}" />
 					</p:column>
@@ -113,7 +110,7 @@
 					</p:column>
 					<p:column style="text-align: center;">
 						<p:commandLink value="Delete"
-							action="#{prestadorCreate.deleteTelefone(telefone.codigo)}"
+							action="#{prestadorCreate.deleteTelefone(telefone.numero)}"
 							update=":prestadorForm:telefonesPanel :prestadorForm:telefonesMsgs" />
 					</p:column>
 				</p:dataTable>

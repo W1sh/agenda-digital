@@ -34,8 +34,8 @@ public class SetCidadeDAO implements ICidadeDAO {
 	}
 
 	@Override
-	public Boolean delete(Integer codigo) {
-		return cidades.removeIf(c -> c.getCodigo().equals(codigo));
+	public void delete(Integer codigo) {
+		cidades.removeIf(c -> c.getCodigo().equals(codigo));
 	}
 
 	@Override

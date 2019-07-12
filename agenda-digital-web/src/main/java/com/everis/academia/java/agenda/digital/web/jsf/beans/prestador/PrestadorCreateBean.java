@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.everis.academia.java.agenda.digital.business.IPrestadorServicoBusiness;
-import com.everis.academia.java.agenda.digital.business.ITelefoneBusiness;
 import com.everis.academia.java.agenda.digital.business.ITipoServicoBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
@@ -32,8 +31,6 @@ public class PrestadorCreateBean {
 	private ITipoServicoBusiness businessTipoServico;
 	@Autowired
 	private IPrestadorServicoBusiness businessPrestador;
-	@Autowired
-	private ITelefoneBusiness businessTelefone;
 
 	private PrestadorServico prestador = new PrestadorServico();
 	private Set<Telefone> telefones;
@@ -53,7 +50,6 @@ public class PrestadorCreateBean {
 	public String create() {
 		try {
 			prestador.getServicosCredenciados().addAll(servicosCredenciados.getTarget());
-			System.out.println(prestador);
 			businessPrestador.create(prestador);
 			prestador = new PrestadorServico();
 			FacesContext.getCurrentInstance().addMessage("prestadorPanel",
@@ -81,26 +77,17 @@ public class PrestadorCreateBean {
 	}
 
 	public void createTelefone() {
-		try {
-			if (telefone.getCodigo() == null) {
-				telefones.add(telefone);
-				businessTelefone.create(telefone);
+		telefones.forEach(t -> {
+			if (t.getNumero().equals(telefone.getNumero())) {
 				FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone criado com sucesso!", ""));
-			} else {
-				telefones.forEach(t -> {
-					if (t.getCodigo().equals(telefone.getCodigo())) {
-						t.setNumero(telefone.getNumero());
-					}
-				});
-				businessTelefone.update(telefone);
-				FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone atualizado com sucesso!", ""));
+						new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone com esse numero já existe!", ""));
+				return;
 			}
-		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("telefonesDataTable", new FacesMessage(
-					FacesMessage.SEVERITY_ERROR, "Não foi possível criar ou atualizar o telefone!", ""));
-		}
+		});
+		telefone.setPrestadorServico(prestador);
+		telefones.add(telefone);
+		FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone atualizado com sucesso!", ""));
 		telefone = new Telefone();
 	}
 
@@ -108,15 +95,10 @@ public class PrestadorCreateBean {
 		this.telefone = telefone;
 	}
 
-	public void deleteTelefone(Integer codigo) {
-		try {
-			businessTelefone.delete(codigo);
-			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone apagado com sucesso!", ""));
-		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("telefonesDataTable", new FacesMessage(
-					FacesMessage.SEVERITY_WARN, "Ocorreu um erro a apagar o telefone!", e.getLocalizedMessage()));
-		}
+	public void deleteTelefone(Long numero) {
+		telefones.remove(new Telefone(numero));
+		FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
+				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone apagado com sucesso!", ""));
 	}
 
 	public void updateDualList(List<TipoServico> source, List<TipoServico> target) {

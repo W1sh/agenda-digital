@@ -4,7 +4,7 @@ import com.everis.academia.java.agenda.digital.entidades.Cidade;
 
 public interface ICidadeDAO extends IGenericDAO<Cidade> {
 
-	Boolean delete(Integer codigo);
+	void delete(Integer codigo);
 
 	Boolean contains(Cidade cidade);
 }

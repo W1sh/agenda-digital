@@ -49,11 +49,11 @@ public class CidadeHibernateDAO implements ICidadeDAO {
 	}
 
 	@Override
-	public Boolean delete(Integer codigo) {
+	public void delete(Integer codigo) {
 		session = sessionFactory.getCurrentSession();
 		Cidade cidade = session.get(Cidade.class, codigo);
 		session.delete(cidade);
-		return null;
+
 	}
 
 	@Override
