@@ -36,7 +36,7 @@ public class TipoServicoUpdateBean {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Tipo servico atualizada com sucesso!", ""));
 			return "tipoServicos";
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("descricao", new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesContext.getCurrentInstance().addMessage("descricao", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a atualizar o tipo servico!", e.getLocalizedMessage()));
 			return null;
 		}

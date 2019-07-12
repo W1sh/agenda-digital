@@ -36,7 +36,7 @@ public class TipoServicoCreateBean {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Tipo servico criado com sucesso!", ""));
 			return "tipoServicos";
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("descricao", new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesContext.getCurrentInstance().addMessage("descricao", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a criar o tipo servico!", e.getLocalizedMessage()));
 			return null;
 		}

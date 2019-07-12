@@ -35,7 +35,7 @@ public class CidadeUpdateBean {
 			FacesContext.getCurrentInstance().addMessage("dataTable",
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cidade atualizada com sucesso!", ""));
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("nome", new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesContext.getCurrentInstance().addMessage("nome", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a atualizar a cidade!", e.getLocalizedMessage()));
 			return null;
 		}

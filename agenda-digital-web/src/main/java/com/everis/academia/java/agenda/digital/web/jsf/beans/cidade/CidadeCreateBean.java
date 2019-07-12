@@ -36,7 +36,7 @@ public class CidadeCreateBean {
 					new FacesMessage(FacesMessage.SEVERITY_INFO, "Cidade criada com sucesso!", ""));
 			return "cidades";
 		} catch (BusinessException e) {
-			FacesContext.getCurrentInstance().addMessage("nome", new FacesMessage(FacesMessage.SEVERITY_WARN,
+			FacesContext.getCurrentInstance().addMessage("nome", new FacesMessage(FacesMessage.SEVERITY_ERROR,
 					"Ocorreu um erro a criar a cidade!", e.getLocalizedMessage()));
 			return null;
 		}
