@@ -5,13 +5,10 @@ import java.util.Collection;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.everis.academia.java.agenda.digital.dao.ITipoServicoDAO;
-import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
 import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
 @Repository
@@ -48,14 +45,4 @@ public class TipoServicoHibernateDAO implements ITipoServicoDAO {
 		TipoServico servico = session.get(TipoServico.class, codigo);
 		session.delete(servico);
 	}
-
-	@Override
-	public Boolean isAssigned(Short codigo) {
-		session = sessionFactory.getCurrentSession();
-		Criteria criteria = session.createCriteria(PrestadorServico.class);
-		criteria.add(Restrictions.eq("cidade", codigo));
-		criteria.setProjection(Projections.count("codigo"));
-		return (long) criteria.uniqueResult() > 0;
-	}
-
 }

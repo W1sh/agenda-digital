@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.everis.academia.java.agenda.digital.business.IPrestadorServicoBusiness;
 import com.everis.academia.java.agenda.digital.business.ITipoServicoBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ITipoServicoDAO;
@@ -17,6 +18,8 @@ public class TipoServicoBusiness implements ITipoServicoBusiness {
 
 	@Autowired
 	private ITipoServicoDAO dao;
+	@Autowired
+	private IPrestadorServicoBusiness businessPrestador;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -43,13 +46,10 @@ public class TipoServicoBusiness implements ITipoServicoBusiness {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Short codigo) throws BusinessException {
 		validaCodigo(codigo);
+		if (businessPrestador.isTipoServicoAssigned(new TipoServico(codigo))) {
+			throw new BusinessException("Este tipo de servico tem um prestador associado e não pode ser apagado!");
+		}
 		dao.delete(codigo);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Boolean isAssigned(Short codigo) {
-		return dao.isAssigned(codigo);
 	}
 
 	private void validaNome(TipoServico tipoServico) throws BusinessException {

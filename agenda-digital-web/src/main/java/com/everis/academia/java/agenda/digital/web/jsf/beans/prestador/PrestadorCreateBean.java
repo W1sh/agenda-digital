@@ -2,7 +2,6 @@ package com.everis.academia.java.agenda.digital.web.jsf.beans.prestador;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -33,7 +32,6 @@ public class PrestadorCreateBean {
 	private IPrestadorServicoBusiness businessPrestador;
 
 	private PrestadorServico prestador = new PrestadorServico();
-	private Set<Telefone> telefones;
 	private Telefone telefone = new Telefone();
 	private DualListModel<TipoServico> servicosCredenciados;
 	private TipoServico servico = new TipoServico();
@@ -44,7 +42,6 @@ public class PrestadorCreateBean {
 		List<TipoServico> target = new ArrayList<TipoServico>();
 
 		servicosCredenciados = new DualListModel<TipoServico>(source, target);
-		telefones = prestador.getTelefones();
 	}
 
 	public String create() {
@@ -82,13 +79,13 @@ public class PrestadorCreateBean {
 	}
 
 	public void createTelefone() {
+		telefone.setPrestadorServico(prestador);
 		if (businessPrestador.numeroTelefoneExists(telefone.getNumero())) {
 			FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Telefone com esse numero já existe", ""));
 			return;
 		}
-		telefone.setPrestadorServico(prestador);
-		telefones.add(telefone);
+		prestador.getTelefones().add(telefone);
 		FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone atualizado com sucesso!", ""));
 		telefone = new Telefone();
@@ -99,7 +96,7 @@ public class PrestadorCreateBean {
 	}
 
 	public void deleteTelefone(Long numero) {
-		telefones.remove(new Telefone(numero));
+		prestador.getTelefones().remove(new Telefone(numero));
 		FacesContext.getCurrentInstance().addMessage("telefonesDataTable",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "Telefone apagado com sucesso!", ""));
 	}
@@ -138,14 +135,6 @@ public class PrestadorCreateBean {
 
 	public void setTelefone(Telefone telefone) {
 		this.telefone = telefone;
-	}
-
-	public Set<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(Set<Telefone> telefones) {
-		this.telefones = telefones;
 	}
 
 	public TipoLogradouro[] getLogradouros() {

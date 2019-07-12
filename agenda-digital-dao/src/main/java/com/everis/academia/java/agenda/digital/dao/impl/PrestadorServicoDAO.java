@@ -5,8 +5,10 @@ import java.util.Collection;
 import java.util.List;
 
 import com.everis.academia.java.agenda.digital.dao.IPrestadorServicoDAO;
+import com.everis.academia.java.agenda.digital.entidades.Cidade;
 import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
 import com.everis.academia.java.agenda.digital.entidades.Telefone;
+import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
 public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 
@@ -48,6 +50,18 @@ public class PrestadorServicoDAO implements IPrestadorServicoDAO {
 
 	@Override
 	public Boolean emailExists(String email) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean isCidadeAssigned(Cidade cidade) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean isTipoServicoAssigned(TipoServico tipoServico) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,6 +1,8 @@
 package com.everis.academia.java.agenda.digital.dao.impl.hibernate;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -11,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.everis.academia.java.agenda.digital.dao.IPrestadorServicoDAO;
+import com.everis.academia.java.agenda.digital.entidades.Cidade;
 import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
 import com.everis.academia.java.agenda.digital.entidades.Telefone;
+import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
 @Repository
 public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
@@ -76,4 +80,23 @@ public class PrestadorServicoHibernateDAO implements IPrestadorServicoDAO {
 		return (long) criteria.uniqueResult() > 0;
 	}
 
+	@Override
+	public Boolean isCidadeAssigned(Cidade cidade) {
+		session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PrestadorServico.class);
+		criteria.add(Restrictions.eq("cidade", cidade));
+		criteria.setProjection(Projections.count("codigo"));
+		return (long) criteria.uniqueResult() > 0;
+	}
+
+	@Override
+	public Boolean isTipoServicoAssigned(TipoServico tipoServico) {
+		Set<TipoServico> servicos = new HashSet<>();
+		servicos.add(tipoServico);
+		session = sessionFactory.getCurrentSession();
+		Criteria criteria = session.createCriteria(PrestadorServico.class);
+		criteria.add(Restrictions.eq("servicosCredenciados", servicos));
+		criteria.setProjection(Projections.count("codigo"));
+		return (long) criteria.uniqueResult() > 0;
+	}
 }

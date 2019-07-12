@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.everis.academia.java.agenda.digital.business.ICidadeBusiness;
+import com.everis.academia.java.agenda.digital.business.IPrestadorServicoBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.ICidadeDAO;
 import com.everis.academia.java.agenda.digital.entidades.Cidade;
@@ -17,6 +18,8 @@ public class CidadeBusiness implements ICidadeBusiness {
 
 	@Autowired
 	private ICidadeDAO cidadeDAO;
+	@Autowired
+	private IPrestadorServicoBusiness businessPrestador;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -43,13 +46,10 @@ public class CidadeBusiness implements ICidadeBusiness {
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(Integer codigo) throws BusinessException {
 		validaCodigo(codigo);
+		if (businessPrestador.isCidadeAssigned(new Cidade(codigo))) {
+			throw new BusinessException("Esta cidade tem prestadores atribuidos por isso não pode ser apagada!");
+		}
 		cidadeDAO.delete(codigo);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Boolean isAssigned(Integer codigo) {
-		return cidadeDAO.isAssigned(codigo);
 	}
 
 	private void validaNome(Cidade cidade) throws BusinessException {

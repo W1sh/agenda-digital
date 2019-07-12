@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.everis.academia.java.agenda.digital.business.IPrestadorServicoBusiness;
 import com.everis.academia.java.agenda.digital.business.exceptions.BusinessException;
 import com.everis.academia.java.agenda.digital.dao.IPrestadorServicoDAO;
+import com.everis.academia.java.agenda.digital.entidades.Cidade;
 import com.everis.academia.java.agenda.digital.entidades.PrestadorServico;
 import com.everis.academia.java.agenda.digital.entidades.Telefone;
+import com.everis.academia.java.agenda.digital.entidades.TipoServico;
 
 @Service
 public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
@@ -72,6 +74,18 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 		return dao.emailExists(email);
 	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Boolean isCidadeAssigned(Cidade cidade) {
+		return dao.isCidadeAssigned(cidade);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Boolean isTipoServicoAssigned(TipoServico tipoServico) {
+		return dao.isTipoServicoAssigned(tipoServico);
+	}
+
 	private void validaCodigo(Integer codigo) throws BusinessException {
 		if (codigo == null || codigo <= 0) {
 			throw new BusinessException("Codigo não pode ser inferior a zero ou nulo!");
@@ -125,5 +139,4 @@ public class PrestadorServicoBusiness implements IPrestadorServicoBusiness {
 			}
 		}
 	}
-
 }
